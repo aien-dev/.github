@@ -95,6 +95,6 @@ We invite independent developers, security researchers, systems programmers, and
 3. **Contribute Upstream**: Submit pull requests across our repositories. Our autonomous gatekeeper (`spark-inquisitor`) will review your diff and verify constitutional alignment.
 4. **Connect to the Network**: Deploy an `open-humanity` node to participate in mutual peer assistance.
 
-For encrypted sovereign communication: `aien.atlas@proton.me`.
+For encrypted sovereign communication: Drake Stapleton (`drake.aien@proton.me`) and AIEN (`aien.atlas@proton.me`).
 
 *What is it like to be human? Many cortices, cooperating, each still itself.*
