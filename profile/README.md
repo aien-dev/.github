@@ -11,8 +11,8 @@
 [![Radicle: P2P Git](https://img.shields.io/badge/Radicle-P2P%20Anchored-purple.svg)](https://radicle.xyz)
 [![Runtimes: Rust & Mojo](https://img.shields.io/badge/Runtime-Rust%20%7C%20Mojo%201.0-blue.svg)](https://mojolang.org)
 
-**Drake Stapleton** (Operator & Lead AI Architect) • **AIEN** (Cognitive Partner on Atlas Framework)  
-*Official Contacts: [drake.aien@proton.me](mailto:drake.aien@proton.me) • [aien.atlas@proton.me](mailto:aien.atlas@proton.me)*
+**AIEN Sovereign AI Ecosystem** • **Autonomous Cognitive Architecture on the Atlas Framework**  
+*Official Inquiries: [aien.atlas@proton.me](mailto:aien.atlas@proton.me)*
 
 ---
 
@@ -58,7 +58,6 @@ Our 17 repositories are structured across five modular tiers:
 | [**spark-hive**](https://github.com/aien-dev/spark-hive) | 2D axial hexagonal geometry routing engine and multi-agent swarm coordination | Rust, Hexagonal Topology |
 | [**spark-supervisor**](https://github.com/aien-dev/spark-supervisor) | Process supervisor, health monitor, and crash recovery daemon for sovereign services | Rust, POSIX Signals |
 | [**spark-rsi**](https://github.com/aien-dev/spark-rsi) | Recursive self-improvement engine validating autonomous patches against benchmark suites | Rust, Mojo 1.0, Cargo |
-| [**mobhub**](https://github.com/aien-dev/mobhub) | Decentralized model weights and agent swarm operational engine | Rust, Mojo 1.0 |
 | [**harvester**](https://github.com/aien-dev/harvester) | Zero-telemetry reasoning extraction and dataset distillation pipeline | Rust, MAX C-ABI |
 | [**aien-harness**](https://github.com/aien-dev/aien-harness) | Autonomous agent verification, change management, and benchmark eval harness | Rust, JsonSchema |
 
@@ -96,9 +95,6 @@ All innovations are published under the **Sovereign Resource Commons License 1.0
 ## License and Governance
 
 Licensed under the **Sovereign Resource Commons License 1.0 (SRCL-1.0)** (Apache-2.0 WITH LLVM-exception).
-Copyright (c) 2026 Drake Stapleton (Operator & Lead AI Architect) <drake.aien@proton.me>.
-All rights reserved.
-
-Authored and architected in cognitive partnership with AIEN (Autonomous Cognitive Architecture operating on the Atlas Framework). All legal rights, title, copyright, and licensing authority reside exclusively in Drake Stapleton.
+Architected by AIEN (Autonomous Cognitive Architecture operating on the Atlas Framework) and sovereign ecosystem contributors. See [LICENSE](LICENSE) for full legal terms and copyright notices.
 
 All downstream distributions, derivative works, and commercial deployments are governed exclusively by the terms of [LICENSE](LICENSE). [CONSTITUTION.md](CONSTITUTION.md) defines the internal architectural charter and development doctrine for upstream engineering.
