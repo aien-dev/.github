@@ -34,7 +34,7 @@ Our 17 repositories are structured across five modular tiers:
 | Repository | Description | Technologies |
 | :--- | :--- | :--- |
 | [**openclaw-rs**](https://github.com/aien-dev/openclaw-rs) | High-speed sovereign agent runtime, sub-millisecond Axum gateway, Mojo SIMD bridge, hardware TPM vault | Rust, Mojo 1.0, Axum, SQLite |
-| [**spark-inquisitor**](https://github.com/aien-dev/spark-inquisitor) | Ultra-fast native code reviewer, constitutional diff auditor (2ms execution latency), zero-telemetry gate | Rust, GitHub Actions |
+| [**spark-inquisitor**](https://github.com/aien-dev/spark-inquisitor) | Native code reviewer, constitutional diff auditor (2ms execution latency), zero-telemetry gate | Rust, GitHub Actions |
 
 ### Tier 2: Decentralized Intelligence & Stigmergy
 | Repository | Description | Technologies |
