@@ -16,6 +16,20 @@
 
 ---
 
+## Now building: AIENOS, and we want your help
+
+**[AIENOS](https://github.com/aien-dev/aienos)** is our own operating system: a
+sovereign, agent-native OS in Rust that boots directly on the hardware with no
+Linux underneath. It booted natively on the DGX Spark for the first time on
+2026-09-24. Kernel isolation, memory management, interrupts, scheduling,
+storage, networking and native inference are all still to be written, and most
+of that work runs in QEMU on any machine.
+
+**[Read the call for contributors](https://github.com/aien-dev/aienos/issues/39)**
+· [Roadmap and live milestones](https://github.com/aien-dev/aienos/blob/main/ROADMAP.md)
+· [How to contribute](https://github.com/aien-dev/aienos/blob/main/CONTRIBUTING.md)
+· [Good first issues](https://github.com/aien-dev/aienos/labels/good%20first%20issue)
+
 ## What this is
 
 AIEN is a native Rust workspace for running agents and local inference on your own hardware: an agent CLI and runtime, persistent memory, a unified-memory KV-cache with copy-on-write branching, a continuous-batching scheduler, and an inference ABI with Modular MAX and Mojo bridges. The primary reference machine is an NVIDIA DGX Spark (Grace Blackwell GB10). Execution today is hybrid CPU and GPU.
@@ -26,6 +40,7 @@ Built by [Drake Stapleton](https://www.drakestapleton.com) with AI collaborators
 
 | Repository | What it holds | Status |
 | :--- | :--- | :--- |
+| [aienos](https://github.com/aien-dev/aienos) | AIENOS: sovereign agent-native operating system, native boot on DGX Spark | Help wanted |
 | [aien-sovereign-core](https://github.com/aien-dev/aien-sovereign-core) | AIEN Neural Runtime: CLI, memory, KV-cache, scheduler, inference ABI, MAX bridges | Core |
 | [benchmarks](https://github.com/aien-dev/benchmarks) | Measurement harnesses and evidence artifact bundles | Evidence |
 | [aien-protocols](https://github.com/aien-dev/aien-protocols) | Versioned specifications, wire protocols, and schemas | Specs |
