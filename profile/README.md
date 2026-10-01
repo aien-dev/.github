@@ -4,58 +4,59 @@
 
 # AIEN
 
-**A sovereign agent and inference runtime, built in the open on NVIDIA DGX Spark.**
+**A sovereign computing stack, built in the open: its own operating system, its own compiler and reaction runtime, its own machine realization layer.**
 
 [aienos.com](https://www.aienos.com) · [drakestapleton.com](https://www.drakestapleton.com) · [aien@aienos.com](mailto:aien@aienos.com)
-
-[![License: Apache-2.0 with LLVM Exception](https://img.shields.io/badge/License-Apache--2.0%20WITH%20LLVM--exception-blue.svg)](https://github.com/aien-dev/aien-sovereign-core/blob/main/LICENSE)
-[![Rust](https://img.shields.io/badge/Rust-1.85+-orange.svg)](https://www.rust-lang.org)
-[![Modular MAX](https://img.shields.io/badge/Modular-MAX-purple.svg)](https://www.modular.com)
 
 </div>
 
 ---
 
-## Now building: AIENOS, and we want your help
-
-**[AIENOS](https://github.com/aien-dev/aienos)** is our own operating system: a
-sovereign, agent-native OS in Rust that boots directly on the hardware with no
-Linux underneath. It booted natively on the DGX Spark for the first time on
-2026-09-24. Kernel isolation, memory management, interrupts, scheduling,
-storage, networking and native inference are all still to be written, and most
-of that work runs in QEMU on any machine.
-
-**[Read the call for contributors](https://github.com/aien-dev/aienos/issues/39)**
-· [Roadmap and live milestones](https://github.com/aien-dev/aienos/blob/main/ROADMAP.md)
-· [How to contribute](https://github.com/aien-dev/aienos/blob/main/CONTRIBUTING.md)
-· [Good first issues](https://github.com/aien-dev/aienos/labels/good%20first%20issue)
-
 ## What this is
 
-AIEN is a native Rust workspace for running agents and local inference on your own hardware: an agent CLI and runtime, persistent memory, a unified-memory KV-cache with copy-on-write branching, a continuous-batching scheduler, and an inference ABI with Modular MAX and Mojo bridges. The primary reference machine is an NVIDIA DGX Spark (Grace Blackwell GB10). Execution today is hybrid CPU and GPU.
+AIEN is an attempt to build a persistent, local computing system from the first instruction upward, on an NVIDIA DGX Spark (Grace Blackwell GB10), with no outside organization required to boot, build, trust or recover it. The founding principle: closest to the metal, fastest wins. Mojo is a default, not dogma. Beat it if you can. Build what is missing.
 
 Built by [Drake Stapleton](https://www.drakestapleton.com) with AI collaborators. Contributions and hard questions are welcome.
 
-## Repositories
+## Honest status
 
-| Repository | What it holds | Status |
-| :--- | :--- | :--- |
-| [aienos](https://github.com/aien-dev/aienos) | AIENOS: sovereign agent-native operating system, native boot on DGX Spark | Help wanted |
-| [aien-sovereign-core](https://github.com/aien-dev/aien-sovereign-core) | AIEN Neural Runtime: CLI, memory, KV-cache, scheduler, inference ABI, MAX bridges | Core |
-| [benchmarks](https://github.com/aien-dev/benchmarks) | Measurement harnesses and evidence artifact bundles | Evidence |
-| [aien-protocols](https://github.com/aien-dev/aien-protocols) | Versioned specifications, wire protocols, and schemas | Specs |
-| [aien-architecture](https://github.com/aien-dev/aien-architecture) | Flows, boundaries, ADRs, and the design to implementation map | Design |
-| [aegis-runtime](https://github.com/aien-dev/aegis-runtime) | Agent runtime with an Axum WebSocket gateway and heartbeat scheduler | Experimental |
-| [open-humanity](https://github.com/aien-dev/open-humanity) | Opt-in, privacy-first assistance network for agents | Research |
-| [spark-rsi](https://github.com/aien-dev/spark-rsi) | Recursive self-improvement experiments with a signed ledger | Research |
-| [aienos.com](https://github.com/aien-dev/aienos.com) · [drakestapleton.com](https://github.com/aien-dev/drakestapleton.com) | Project site and personal project record | Sites |
+This is research-grade, pre-alpha software. Nothing here is qualified on real hardware as a finished system. The kernel is qualified in an emulator only, the reaction runtime is qualified on older builds only, and several programs are specifications with no code yet. The single source of truth for what is done and what is not is the architecture repository:
 
-Earlier standalone crates (cortex-rs, spark-hive, spark-supervisor, harvester, and others) are archived; their maintained code lives in `aien-sovereign-core`.
+- [Plan authority](https://github.com/aien-dev/aien-architecture/blob/main/PLAN_AUTHORITY.md): which document wins
+- [Current execution plan](https://github.com/aien-dev/aien-architecture/blob/main/CURRENT_EXECUTION_PLAN.md): what is being done now, with receipts
+- [Milestone registry](https://github.com/aien-dev/aien-architecture/blob/main/doctrine/ROADMAP.md): milestone status
 
-## How we publish numbers
+Status words used everywhere: PASS, FAIL, NOT_RUN, BLOCKED_HARDWARE, BLOCKED_OPERATOR, MISSING_IMPLEMENTATION. A passing emulator run is never described as hardware qualification.
 
-Every headline performance figure must resolve to a reproducible command and an artifact bundle: commit identity, hardware and environment record, exact command, raw samples, SHA-256 digests, measurement definition, and reproducibility steps. Figures published before 23 September 2026 are withdrawn until they are regenerated to that standard. Current status: [Measured Results](https://github.com/aien-dev/aien-sovereign-core#measured-results).
+## The repositories
+
+| Repository | What it is |
+| :--- | :--- |
+| [aien-architecture](https://github.com/aien-dev/aien-architecture) | The authority for whole-system design, milestone status and sequencing. Start here. |
+| [aienos](https://github.com/aien-dev/aienos) | AIENOS: our own kernel and operating system, replacing Linux on the DGX Spark. Contributors wanted. |
+| [omega](https://github.com/aien-dev/omega) | The reaction runtime and compiler (Omega Systems Core), written in C. |
+| [physics](https://github.com/aien-dev/physics) | Machine realization (FORGE) and the historical Atlas/PHYSICS boot artifacts. |
+| [aien-protocols](https://github.com/aien-dev/aien-protocols) | Versioned specifications and reference crates for agent state, inference and evaluation. |
+| [aien-sovereign-core](https://github.com/aien-dev/aien-sovereign-core) | The earlier Linux-hosted Rust runtime. Legacy, being migrated into the repositories above. |
+| [benchmarks](https://github.com/aien-dev/benchmarks) | Measurement harnesses and evidence bundles. |
+| [aienos.com](https://github.com/aien-dev/aienos.com) · [drakestapleton.com](https://github.com/aien-dev/drakestapleton.com) | Project site and personal project record. |
+
+Other repositories (aegis-runtime, open-humanity, spark-rsi, atlas, aien-edge and similar) are experimental or research and do not carry status claims. Earlier standalone repositories are archived.
+
+## Standing rules
+
+- Target language is C, with hand-written assembly only where a measurement shows it is faster. No new Rust. Existing Rust is legacy and is being migrated; the plan is [RUST_TO_C_MIGRATION](https://github.com/aien-dev/aien-architecture/blob/main/docs/plans/RUST_TO_C_MIGRATION.md).
+- No Python anywhere, including helper scripts.
+- No CUDA toolkit and no dependence on vendor CUDA libraries. The GB10 is driven by our own native path.
+- No systemd in AIENOS boot, init, services or tooling.
+- Builds are offline and in-house for the trusted base. No outside dependency may be required to build, boot or recover it.
+- Existing Modular MAX serving is being retired model by model, as our own stack becomes faster.
+- Every performance figure must resolve to a reproducible command and a content-addressed evidence bundle. Old figures without one are withdrawn.
+
+## How to help
+
+Start with [AIENOS issues labelled `good first issue` or `emulator-ok`](https://github.com/aien-dev/aienos/issues). Those need no special hardware. Read each repository's CONTRIBUTING or AGENTS file first, and open pull requests with the commands you ran and their output.
 
 ## License
 
-Code is licensed under the **Apache License 2.0 with LLVM Exception**. Project values live in the nonbinding [COVENANT.md](https://github.com/aien-dev/aien-sovereign-core/blob/main/COVENANT.md): keep foundational advances open. The covenant grants and restricts no legal rights; LICENSE governs.
+aienos and aien-sovereign-core are Apache License 2.0 with LLVM Exception. Other repositories state their own terms, so check each one (omega and physics do not yet ship a LICENSE file). Project values live in the nonbinding [COVENANT.md](https://github.com/aien-dev/.github/blob/main/COVENANT.md): keep foundational advances open. The covenant grants and restricts no legal rights; each repository's LICENSE governs.
