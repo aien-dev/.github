@@ -20,7 +20,7 @@ Built by [Drake Stapleton](https://www.drakestapleton.com) with AI collaborators
 
 ## Honest status
 
-This is research-grade, pre-alpha software. Nothing here is qualified on real hardware as a finished system. The kernel is qualified in an emulator only, the reaction runtime is qualified on older builds only, and several programs are specifications with no code yet. The single source of truth for what is done and what is not is the architecture repository:
+This is research-grade, pre-alpha software. Nothing here is qualified on real hardware as a finished system. The AIENOS C kernel passes only some emulator gates and has never booted on the real machine, the reaction runtime was qualified on older builds only, and several programs are specifications with no code yet. The single source of truth for what is done and what is not is the architecture repository:
 
 - [Plan authority](https://github.com/aien-dev/aien-architecture/blob/main/PLAN_AUTHORITY.md): which document wins
 - [Current execution plan](https://github.com/aien-dev/aien-architecture/blob/main/CURRENT_EXECUTION_PLAN.md): what is being done now, with receipts
@@ -34,7 +34,7 @@ Status words used everywhere: PASS, FAIL, NOT_RUN, BLOCKED_HARDWARE, BLOCKED_OPE
 | :--- | :--- |
 | [aien-architecture](https://github.com/aien-dev/aien-architecture) | The authority for whole-system design, milestone status and sequencing. Start here. |
 | [aienos](https://github.com/aien-dev/aienos) | AIENOS: our own kernel and operating system, replacing Linux on the DGX Spark. Contributors wanted. |
-| [omega](https://github.com/aien-dev/omega) | The reaction runtime and compiler (Omega Systems Core), written in C. |
+| [omega](https://github.com/aien-dev/omega) | The reaction runtime and compiler (Omega Systems Core). The current implementation is C. |
 | [physics](https://github.com/aien-dev/physics) | Machine realization (FORGE) and the historical Atlas/PHYSICS boot artifacts. |
 | [aien-protocols](https://github.com/aien-dev/aien-protocols) | Versioned specifications and reference crates for agent state, inference and evaluation. |
 | [aien-sovereign-core](https://github.com/aien-dev/aien-sovereign-core) | The earlier Linux-hosted Rust runtime. Legacy, being migrated into the repositories above. |
@@ -45,7 +45,7 @@ Other repositories (aegis-runtime, open-humanity, spark-rsi, atlas, aien-edge an
 
 ## Standing rules
 
-- Target language is C, with hand-written assembly only where a measurement shows it is faster. No new Rust. Existing Rust is legacy and is being migrated; the plan is [RUST_TO_C_MIGRATION](https://github.com/aien-dev/aien-architecture/blob/main/docs/plans/RUST_TO_C_MIGRATION.md).
+- Language rule: Rust is scaffolding, Omega is the destination, and C or assembly only where hardware, boot, or a measurement justifies it. Nothing already merged is reverted. See [ADR 0024](https://github.com/aien-dev/aien-architecture/blob/main/docs/adr/0024-rust-scaffolding-omega-destination.md), which supersedes the old [Rust-to-C plan](https://github.com/aien-dev/aien-architecture/blob/main/docs/plans/RUST_TO_C_MIGRATION.md).
 - No Python anywhere, including helper scripts.
 - No CUDA toolkit and no dependence on vendor CUDA libraries. The GB10 is driven by our own native path.
 - No systemd in AIENOS boot, init, services or tooling.
@@ -59,4 +59,4 @@ Start with [AIENOS issues labelled `good first issue` or `emulator-ok`](https://
 
 ## License
 
-aienos and aien-sovereign-core are Apache License 2.0 with LLVM Exception. Other repositories state their own terms, so check each one (omega and physics do not yet ship a LICENSE file). Project values live in the nonbinding [COVENANT.md](https://github.com/aien-dev/.github/blob/main/COVENANT.md): keep foundational advances open. The covenant grants and restricts no legal rights; each repository's LICENSE governs.
+aienos and aien-sovereign-core are Apache License 2.0 with LLVM Exception. aien-protocols uses Apache License 2.0 for code and the Community Specification License 1.0 for specifications. Other repositories state their own terms, so check each one (omega and physics do not yet ship a LICENSE file). Project values live in the nonbinding [COVENANT.md](https://github.com/aien-dev/.github/blob/main/COVENANT.md): keep foundational advances open. The covenant grants and restricts no legal rights; each repository's LICENSE governs.
