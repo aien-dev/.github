@@ -1,3 +1,7 @@
+## Copyright
+
+
+
 <div align="center">
 
 <img src="avatar.jpg" alt="AIEN avatar" width="180" />
@@ -59,4 +63,4 @@ Start with [AIENOS issues labelled `good first issue` or `emulator-ok`](https://
 
 ## License
 
-aienos and aien-sovereign-core are Apache License 2.0 with LLVM Exception. aien-protocols uses Apache License 2.0 for code and the Community Specification License 1.0 for specifications. Other repositories state their own terms, so check each one (omega and physics do not yet ship a LICENSE file). Project values live in the nonbinding [COVENANT.md](https://github.com/aien-dev/.github/blob/main/COVENANT.md): keep foundational advances open. The covenant grants and restricts no legal rights; each repository's LICENSE governs.
+aienos, aien-sovereign-core and this repository are licensed under the GNU Affero General Public License v3.0 or later (AGPL-3.0-or-later). aien-protocols uses AGPL-3.0-or-later for code and the Community Specification License 1.0 for specifications. Other repositories state their own terms, so check each one (omega and physics do not yet ship a LICENSE file). Project values live in the nonbinding [COVENANT.md](https://github.com/aien-dev/.github/blob/main/COVENANT.md): keep foundational advances open. The covenant grants and restricts no legal rights; each repository's LICENSE governs.
