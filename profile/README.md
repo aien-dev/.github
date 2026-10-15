@@ -16,7 +16,7 @@
 
 ## What this is
 
-AIEN is an attempt to build a persistent, local computing system from the first instruction upward, on an NVIDIA DGX Spark (Grace Blackwell GB10), with no outside organization required to boot, build, trust or recover it. The founding principle: closest to the metal, fastest wins. Mojo is a default, not dogma. Beat it if you can. Build what is missing.
+AIEN is an attempt to build a persistent, local computing system from the first instruction upward, on an NVIDIA DGX Spark (Grace Blackwell GB10), with no outside organization required to boot, build, trust or recover it. The founding principle: closest to the metal, fastest wins. Build what is missing.
 
 Built by [Drake Stapleton](https://www.drakestapleton.com) with AI collaborators. Contributions and hard questions are welcome.
 
@@ -79,7 +79,7 @@ Other repositories (aegis-runtime, open-humanity, spark-rsi, atlas, aien-edge an
 - No CUDA toolkit and no dependence on vendor CUDA libraries. The GB10 is driven by our own native path.
 - No systemd in AIENOS boot, init, services or tooling. Host-side scripts and operator steps that still use it are flagged, each with the replacement it owes, in [SOVEREIGNTY_FLAGS.md](https://github.com/aien-dev/aienos/blob/main/docs/SOVEREIGNTY_FLAGS.md).
 - Builds are offline and in-house for the trusted base. No outside dependency may be required to build, boot or recover it.
-- Outside inference stacks (Modular MAX, llama.cpp, vLLM) are yardsticks only; the ones in use today (a Modular MAX adapter, a Hugging Face Transformers reference and a CUDA mirror) are kept in [aien-yardsticks](https://github.com/aien-dev/aien-yardsticks). Nothing from them ships in AIEN.
+- Outside inference stacks (llama.cpp, vLLM) are yardsticks only; the ones kept today (a Hugging Face Transformers reference, a CUDA mirror and a frozen Modular MAX adapter, no longer run since Modular MAX and Mojo were removed from AIEN on 2026-10-15) are in [aien-yardsticks](https://github.com/aien-dev/aien-yardsticks). Nothing from them ships in AIEN.
 - Every performance figure must resolve to a reproducible command and a content-addressed evidence bundle. Old figures without one are withdrawn.
 - Changes land through pull requests with the commands run and their output. Main branches on the core repositories are protected; no automatic merging.
 
