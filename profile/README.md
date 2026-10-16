@@ -4,7 +4,7 @@
 
 # AIEN
 
-**A sovereign computing stack, built in the open: its own operating system, its own compiler and reaction runtime, its own machine realization layer.**
+**A sovereign computing stack, built in the open: its own operating system, its own compiler and reaction runtime, its own machine realization layer. All running on your own hardware.**
 
 [aienos.com](https://www.aienos.com) · [drakestapleton.com](https://www.drakestapleton.com) · [aien@aienos.com](mailto:aien@aienos.com)
 
