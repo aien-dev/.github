@@ -2,7 +2,7 @@
 
 <img src="aien-butterfly.webp" alt="AIEN butterfly mark" width="180" />
 
-# AIEN
+# AIENOS
 
 **A sovereign computing stack, built in the open: its own operating system, its own compiler and reaction runtime, its own machine realization layer. All running on your own hardware.**
 
