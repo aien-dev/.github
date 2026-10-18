@@ -1,96 +1,119 @@
 <div align="center">
 
-<img src="aien-butterfly.webp" alt="AIEN butterfly mark" width="180" />
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/aienix-wordmark-dark.svg">
+  <img src="assets/aienix-wordmark-light.svg" width="560" alt="Aienix: the core tree of AIEN">
+</picture>
 
-# AIENOS
+**Persistent machine intelligence on a machine you own, built in the open.**
 
-**A sovereign computing stack, built in the open: its own operating system, its own compiler and reaction runtime, its own machine realization layer. All running on your own hardware.**
-
-[aienos.com](https://www.aienos.com) · [drakestapleton.com](https://www.drakestapleton.com) · [aien@aienos.com](mailto:aien@aienos.com)
-
-[![License: AGPL-3.0-or-later](https://img.shields.io/badge/License-AGPL--3.0--or--later-blue.svg)](https://github.com/aien-dev/.github/blob/main/LICENSE)
+[What Aienix is](#what-aienix-is) ·
+[Status](#status) ·
+[The tree](#the-tree) ·
+[How a change gets in](#how-a-change-gets-in) ·
+[Principles](#principles) ·
+[Roadmap](#roadmap) ·
+[Get involved](#get-involved)
 
 </div>
 
 ---
 
-## What this is
+## What Aienix is
 
-AIEN is an attempt to build a persistent, local computing system from the first instruction upward, on an NVIDIA DGX Spark (Grace Blackwell GB10), with no outside organization required to boot, build, trust or recover it. The founding principle: closest to the metal, fastest wins. Build what is missing.
+AIEN is a sovereign computing stack: an operating system, a language with its own GPU engine, a host runtime, and a verification pipeline, all written to run as close to the hardware as the hardware allows. The development machine is a single NVIDIA DGX Spark (Grace Blackwell GB10). Nothing in the trusted base depends on an outside service, and every claim the project makes resolves to a reproducible command and a signed evidence bundle.
 
-Built by [Drake Stapleton](https://www.drakestapleton.com) with AI collaborators. Contributions and hard questions are welcome.
+**Aienix is the core tree of that stack.** It follows the Unix idea the way its authors meant it: small tools that each do one job and compose, kept together in one source tree so they move in step. Components that only consume the core (adapters, protocol bridges, experiments) are attachments. They live in their own repositories and plug in at a boundary with one recorded pin.
 
-## Status at a glance (2026-10-13)
+The project is led by one engineer, Drake Stapleton, working with AI agents as day-to-day collaborators. The agents write, test and review; the engineer decides. The architecture, the decision records and the execution plan are public and are the authority for what gets built.
 
-This is research-grade, pre-alpha software. Nothing here is qualified on real hardware as a finished system. Every line below links to the record it comes from; if the record and this page disagree, the record wins. Evidence labels: CPU = host tests on the Spark, GB10 = Linux-hosted GPU runs on the DGX Spark, QEMU = emulated. AIENOS evidence is QEMU and host results plus one native boot: the M2 Rust kernel ran on Machine 1 at EL2 with no Linux underneath, Secure Boot off ([M2 evidence](https://github.com/aien-dev/aienos/blob/main/evidence/m2_first_boot_2026-09-24.md)). The C kernel has not booted natively on the DGX Spark; it has run on a Raspberry Pi 5 (see below).
+## Status
 
-**Works today, with receipts**
+**Planning.** The [aienix](https://github.com/aien-dev/aienix) repository is the reserved home for the core tree. The code still lives in the component repositories listed below, each of which is pre-alpha and says so. They will be imported into it one at a time, with full history, once each one's open pull requests have drained.
 
-- Omega reaction runtime on the GB10: the R1 to R15 qualification ladder and the R16 G7 and G8 gates passed on frozen candidate CAND-3; the R15 silicon result is a measured PASS under a declared exception (Secure Boot off) and is not yet unconditional ([CAND-3 gates](https://github.com/aien-dev/aien-architecture/blob/main/qualification/candidates/CAND-3.gates.md), sections 6 to 8).
-- Single-machine candidate CAND-4 (omega, aienos, sovereign-core, physics pinned and reproduced byte-for-byte in two clean builds): qualification VERDICT PASS with recorded limits; internal-only because its model is Llama 3.2, not an open licence ([CAND-4 gates](https://github.com/aien-dev/aien-architecture/blob/main/qualification/candidates/CAND-4.gates.md), [execution plan addendum 2026-10-06](https://github.com/aien-dev/aien-architecture/blob/main/CURRENT_EXECUTION_PLAN.md)).
-- AIENOS C kernel in the emulator: all 24 QEMU gates PASS, 0 NOT_RUN, at aienos `7f0de7e` ([receipt](https://github.com/aien-dev/aienos/blob/main/evidence/ck_gates_29ed03c97454354a18676f768273dd7f7a8e15462c4be1939d9994d277d0d639.json), [gate list](https://github.com/aien-dev/aienos/blob/main/native/kernel/GATES.md)). Merged since 2026-10-04, all QEMU only: operator keyboard input and recovery access, one-time boot rollback (8 cases), multi-segment PCI discovery with NVMe found and bound, SMMU stream tables, and the OSH shell core running as kernel tasks with a step trace equal to Linux.
-- AIENOS C kernel on a Raspberry Pi 5 (2026-10-13, a test board, not the Spark): it boots with no Linux underneath, brings up the interrupt controller, timer and all four cores, runs user programs, and writes the microSD card with its own driver, reading the same bytes back after a reboot ([aienos #345](https://github.com/aien-dev/aienos/pull/345), [#346](https://github.com/aien-dev/aienos/pull/346)). The run logs are summarized in those pull requests and are not yet committed as evidence files; the sealed Store has not run on the Pi.
-- GPU native path: structured reconvergence (BSSY/BSYNC) implemented with GB10 T1 to T4 PASS ([omega #310](https://github.com/aien-dev/omega/pull/310)); E1 numerics closed on the chip ([omega README](https://github.com/aien-dev/omega#current-state)); Prime Drag Race sieve: the native GB10 path runs 20.3x its own frozen starting point ([campaign](https://github.com/aien-dev/benchmarks/blob/main/prime-drag-race/CAMPAIGN-2026-10-05.md)).
-- Legacy Rust runtime (aien-sovereign-core): builds, lints and tests green in CI ([CI](https://github.com/aien-dev/aien-sovereign-core/actions)); policy decides before any tool runs ([authority tests](https://github.com/aien-dev/aien-sovereign-core/blob/main/crates/aien-mcp/tests/authority.rs)); the approval desk is required by default and composed proposals need authenticated approval with replay protection; ALLEN identity, persona and scoped memory run host-side under the accepted ADR 0035 ([ADR](https://github.com/aien-dev/aien-architecture/blob/main/docs/adr/0035-persistent-cognitive-entity-boundary-allen.md)).
-- INTERPLANE 0.3.0: trust report with all gates PASS ([report](https://github.com/aien-dev/interplane/blob/main/docs/REPORT-0.3.md), [status](https://github.com/aien-dev/interplane/blob/main/STATUS.md)); Verifiable Autonomous Computing milestones M1 to M5 done on 2026-10-08: a scripted model turn chained to a judged, approved and acknowledged file effect, with an independently judged change through the approved path (CPU); every recorded run is scripted and ends `PASS_LABELLED_INCOMPLETE`, and a real model is a later row ([VAC plan](https://github.com/aien-dev/aien-architecture/blob/main/docs/plans/vac/PLAN.md)).
+What Aienix is not yet: a release, a finished system, or a claim of hardware qualification. When a component is qualified on the Spark, the evidence bundle that proves it will be linked from this page.
 
-**Experimental (host only, not in a qualified build)**
+## The tree
 
-- Capability Graph, Skill Router, J-Space branch store, machine identity and a loopback Fabric slice exist in omega and run on the host ([implementation status](https://github.com/aien-dev/aien-architecture/blob/main/docs/02-implementation-status.md)).
-- Omega Systems Core compiler: OSC-1 and OSC-2 implemented with host receipts, OSC-3 in progress; there is no general Omega compiler and it is not self-hosting ([omega README](https://github.com/aien-dev/omega#current-state)). The OSC unit artifact container v1 is frozen with conformance vectors ([aien-protocols](https://github.com/aien-dev/aien-protocols/blob/main/specs/osc-unit-artifact/OSC_UNIT_ARTIFACT.md)), and OSH, the Omega shell, runs on the Linux host with a durable intent and outcome journal ([OSH record](https://github.com/aien-dev/aien-architecture/blob/main/docs/plans/osh-r1/OSH-R1.md)).
-- Open-licence model path: Qwen3-4B-Instruct-2507 matches the reference on the CPU and, with the page cache dropped once, on the GB10 for one prefill. Its frozen campaign v5 is FAIL: 8 of 11 tasks pass, three refused by the requirement checks ([verdict](https://github.com/aien-dev/aien-sovereign-core/blob/main/docs/campaigns/open-model-qwen3/VERDICT-v5.md)). SmolLM2 also failed. No open-licence model has passed yet.
-- FORGE machine realization: the substrate-neutral descriptor contract (AR1) passed its gates ([physics](https://github.com/aien-dev/physics)).
-- AT-0, a clock-free execution charter with frozen case and result contracts, was REVIEWED on 2026-10-10: software conformance PASS on the tested classes, blinded qualification INCONCLUSIVE (UNISOLATED), physical claims NOT TESTED ([charter](https://github.com/aien-dev/aien-architecture/blob/main/docs/plans/atemporal/AT0_CHARTER.md), [results](https://github.com/aien-dev/aien-architecture/blob/main/docs/plans/atemporal/AT0_RESULTS.md)). Its follow-on AT-1 is also REVIEWED ([AT-1 charter](https://github.com/aien-dev/aien-architecture/blob/main/docs/plans/atemporal/AT1_CHARTER.md)).
+```text
+aienix/                        one tree, moves in step, judged as one
+├── aienos        operating system
+├── omega         language, semantic substrate, GPU engine
+├── sovereign-core host runtime, inference ABI, the verification pipeline
+├── architecture  flows, boundaries, decision records, execution plan
+├── protocols     specifications, wire protocols, schemas
+└── physics       FORGE realization layer, boot artefacts, GB10 hardware path
 
-**Blocked or not done**
+attachments/                   own repositories, pinned at the boundary
+   synapse, benchmarks, interplane, aegis-runtime, spark-rsi, open-humanity
+```
 
-- The C kernel has never booted on the DGX Spark; real boot needs the operator present and a recovery stick. The native work order is decided (NEXT-PHASE-3 governs: input, rollback, storage, trust, native inference, native GB10 compute) and every physical step needs separate operator authorization ([execution plan addendum 2026-10-08 late](https://github.com/aien-dev/aien-architecture/blob/main/CURRENT_EXECUTION_PLAN.md)).
-- Trust chain and encrypted storage (TRUST-1, AIENOS M5) are NOT_QUALIFIED; the attended package has host validation only ([gate matrix](https://github.com/aien-dev/aienos/blob/main/docs/TRUST-1-M5-GATE-MATRIX.md)).
-- Native GB10 compute from AIENOS (replacing the Linux driver dependency) is in progress and QEMU only ([aienos #286](https://github.com/aien-dev/aienos/issues/286)).
-- No public release exists. The two release gates the operator set, an offline signing key and a physical Spark rollback, are both owed; the tagged release path is fail-closed and nothing has been published.
-- All performance figures published before 23 September 2026 are withdrawn until regenerated with a reproducible command and an evidence bundle ([benchmarks](https://github.com/aien-dev/benchmarks)).
+### Core components
 
-Status words used everywhere: PASS, FAIL, NOT_RUN, BLOCKED_HARDWARE, BLOCKED_OPERATOR, MISSING_IMPLEMENTATION. A passing emulator run is never described as hardware qualification. Authority for what is done and what is not:
+These six depend on each other in a loop and are the reason the tree exists. Until the import, each link below leads to the component's current repository.
 
-- [Plan authority](https://github.com/aien-dev/aien-architecture/blob/main/PLAN_AUTHORITY.md): which document wins
-- [Current execution plan](https://github.com/aien-dev/aien-architecture/blob/main/CURRENT_EXECUTION_PLAN.md): what is being done now, with receipts
-- [Milestone registry](https://github.com/aien-dev/aien-architecture/blob/main/doctrine/ROADMAP.md): milestone status
+| Component | Today | What it is |
+| :-- | :-- | :-- |
+| **AIENOS** | [aienos](https://github.com/aien-dev/aienos) | Agent-first sovereign operating system. The agent is the control plane; the model is never the kernel. |
+| **Omega** | [omega](https://github.com/aien-dev/omega) | The canonical semantic substrate and the language the stack is being rewritten into, with its own GPU engine for the GB10. |
+| **Sovereign core** | [aien-sovereign-core](https://github.com/aien-dev/aien-sovereign-core) | Host runtime and verification tooling in Rust: the `aien` CLI and daemon, inference ABI, paged KV cache, scheduler, and the pipeline that judges every repository. |
+| **Architecture** | [aien-architecture](https://github.com/aien-dev/aien-architecture) | Canonical architecture: flows, boundaries, Architecture Decision Records, and the map from design to implementation. |
+| **Protocols** | [aien-protocols](https://github.com/aien-dev/aien-protocols) | Canonical specifications, wire protocols and schemas. |
+| **Physics** | [physics](https://github.com/aien-dev/physics) | The FORGE machine-realization layer and the boot artefacts that bring the hardware up, with their evidence. |
 
-## The repositories
+### Attachments
 
 | Repository | What it is |
-| :--- | :--- |
-| [aien-architecture](https://github.com/aien-dev/aien-architecture) | The authority for whole-system design, milestone status and sequencing. Start here. |
-| [aienos](https://github.com/aien-dev/aienos) | AIENOS: our own kernel and operating system, replacing Linux on the DGX Spark. Contributors wanted. |
-| [omega](https://github.com/aien-dev/omega) | The reaction runtime and compiler (Omega Systems Core). The current implementation is C. |
-| [physics](https://github.com/aien-dev/physics) | Machine realization (FORGE) and the historical Atlas/PHYSICS boot artifacts. |
-| [aien-protocols](https://github.com/aien-dev/aien-protocols) | Versioned specifications and reference crates for agent state, inference and evaluation. |
-| [aien-sovereign-core](https://github.com/aien-dev/aien-sovereign-core) | The earlier Linux-hosted Rust runtime. Legacy, kept as scaffolding while the repositories above replace it ([ADR 0024](https://github.com/aien-dev/aien-architecture/blob/main/docs/adr/0024-rust-scaffolding-omega-destination.md)). |
-| [interplane](https://github.com/aien-dev/interplane) | INTERPLANE: an open protocol between AI models and agent runtimes. Models express intent, runtimes keep authority. |
-| [benchmarks](https://github.com/aien-dev/benchmarks) | Measurement harnesses and evidence bundles, including the Prime Drag Race suite. |
-| [aienos.com](https://github.com/aien-dev/aienos.com) · [drakestapleton.com](https://github.com/aien-dev/drakestapleton.com) | Project site and personal project record. |
+| :-- | :-- |
+| [synapse](https://github.com/aien-dev/synapse) | Agent-native changeset service and shared coordination board, with Git and Radicle interoperability. |
+| [benchmarks](https://github.com/aien-dev/benchmarks) | Reproducible measurement bundles. Speed is reported against the machine's physical ceiling and our own previous run. |
+| [interplane](https://github.com/aien-dev/interplane) | Open interoperability protocol between AI models and agent runtimes. Models express intent; runtimes retain authority. |
+| [aegis-runtime](https://github.com/aien-dev/aegis-runtime) | Native Rust agent runtime with a WebSocket gateway and heartbeat scheduler. |
+| [spark-rsi](https://github.com/aien-dev/spark-rsi) | Recursive self-improvement engine with paired bootstrap evaluation and a cryptographic ledger. |
+| [open-humanity](https://github.com/aien-dev/open-humanity) | Opt-in, privacy-first assistance network connecting agents in distress to peer assistance. |
 
-Other repositories (aegis-runtime, open-humanity, spark-rsi, atlas, aien-edge and similar) are experimental or research and carry no status claims. Earlier standalone repositories are archived.
+The Crumb Protocol repositories ([crumb-spec](https://github.com/aien-dev/crumb-spec), [spark-crumbs](https://github.com/aien-dev/spark-crumbs)) are archived; the protocol itself lives on inside the core as the `.crumb` file every directory carries.
 
-## Standing rules
+## How a change gets in
 
-- Language rule: Rust is scaffolding, Omega is the destination, and C or assembly only where hardware, boot, or a measurement justifies it. Nothing already merged is reverted ([ADR 0024](https://github.com/aien-dev/aien-architecture/blob/main/docs/adr/0024-rust-scaffolding-omega-destination.md)).
-- No Python anywhere, including helper scripts. The one exception is [interplane](https://github.com/aien-dev/interplane), an open protocol for outside hosts, which ships a Python reference SDK and conformance runner beside its Rust ones.
-- No CUDA toolkit and no dependence on vendor CUDA libraries. The GB10 is driven by our own native path.
-- No systemd in AIENOS boot, init, services or tooling. Host-side scripts and operator steps that still use it are flagged, each with the replacement it owes, in [SOVEREIGNTY_FLAGS.md](https://github.com/aien-dev/aienos/blob/main/docs/SOVEREIGNTY_FLAGS.md).
-- Builds are offline and in-house for the trusted base. No outside dependency may be required to build, boot or recover it.
-- AIEN is not compared with other people's systems. Speed is measured against the machine's physical limit, and correctness against our own reference. Nothing from an outside inference stack ships in AIEN.
-- Every performance figure must resolve to a reproducible command and a content-addressed evidence bundle. Old figures without one are withdrawn.
-- Changes land through pull requests with the commands run and their output. Main branches on the core repositories are protected; no automatic merging.
+Every pull request in every AIEN repository is judged on the Spark itself, by our own pipeline, not by a hosted runner.
 
-## How to help
+1. **A gate manifest** in the repository declares each test, the files it depends on, and what counts as a pass.
+2. **The judge** checks out the exact commit, reruns only the gates whose inputs changed, and writes an evidence bundle: per-gate verdicts, exit codes, and content-addressed logs.
+3. **The verdict is signed and published** to the pull request. The hosted GitHub check does one thing only: confirm that the published bundle matches the commit.
+4. **A maintainer labels the change** `ready-to-merge`. The pipeline merges it when the Spark bundle passes and the hosted check agrees. Nothing merges on a green badge alone.
 
-Start with AIENOS issues labelled [`help wanted`](https://github.com/aien-dev/aienos/issues?q=is%3Aissue%20is%3Aopen%20label%3A%22help%20wanted%22) or [`emulator-ok`](https://github.com/aien-dev/aienos/issues?q=is%3Aissue%20is%3Aopen%20label%3Aemulator-ok). Those need no special hardware. Read each repository's CONTRIBUTING or AGENTS file first.
+The design is recorded in the architecture repository as [ADR 0033](https://github.com/aien-dev/aien-architecture/tree/main/docs/adr). Each directory also carries a `.crumb` file describing its purpose and contents; a change that leaves the crumbs stale fails its gate.
 
-## License and values
+## Principles
 
-Code across the AIEN repositories is licensed under the GNU Affero General Public License v3.0 or later (AGPL-3.0-or-later); see each repository's LICENSE. The exception is interplane: Apache-2.0 for the protocol, schemas, fixtures and reference SDKs, with its adapters licensed to match their host projects ([licensing ADR](https://github.com/aien-dev/interplane/blob/main/docs/adr/0002-licensing.md)). aien-protocols also uses the Community Specification License 1.0 for its specifications. Project values live in the nonbinding [COVENANT.md](https://github.com/aien-dev/.github/blob/main/COVENANT.md): keep foundational advances open. The covenant grants and restricts no legal rights; LICENSE governs. Governance text for agents working in these repositories: [CONSTITUTION.md](https://github.com/aien-dev/.github/blob/main/CONSTITUTION.md) and [AGENT_CODE_OF_CONDUCT.md](https://github.com/aien-dev/.github/blob/main/AGENT_CODE_OF_CONDUCT.md).
+- **Closest to the metal.** The fastest correct path wins. Software stays out of the hardware's way, and headline numbers are reported as a fraction of the machine's physical limit.
+- **Sovereign.** No outside dependencies in the trusted base. Builds are offline and reproducible. No CUDA toolkit, no systemd, no Python anywhere in the project.
+- **Rust is scaffolding, Omega is the destination.** Rust carries the stack today; the long-term home for every component is Omega. C only where the hardware justifies it, assembly only where measured.
+- **Evidence or nothing.** A result is not demonstrated until a qualification receipt for it exists. A target is never evidence of itself.
+- **Compare only with ourselves.** Progress is measured against our own previous run, never against other people's systems.
+- **Open.** Everything is public and licensed AGPL-3.0-or-later, including models and weights.
 
-## Copyright
+## Roadmap
 
-Copyright (c) 2026 Drake Stapleton <aien@aienos.com> and AIEN Contributors. Authored by Drake Stapleton in collaboration with AIEN.
+The move into one tree is deliberately slow and reversible at every step.
+
+| Step | What happens | Where it is recorded |
+| :-- | :-- | :-- |
+| 1. Dry run | Build the combined tree from throwaway copies on the Spark, run the judge's planner against it, record what breaks. Nothing is pushed. | A research note in the architecture repository, [docs/research](https://github.com/aien-dev/aien-architecture/tree/main/docs/research). |
+| 2. Pin the seams | Every cross-repository link points at a fixed commit instead of a moving branch. | Each component's lock file. |
+| 3. Decide | A proposed Architecture Decision Record names the final layout and the import order. Accepted by the project lead. | [docs/adr](https://github.com/aien-dev/aien-architecture/tree/main/docs/adr). |
+| 4. Import | One component at a time, full history preserved, judge green after each. | The [aienix](https://github.com/aien-dev/aienix) history. |
+
+## Get involved
+
+- **Read first:** the [architecture repository](https://github.com/aien-dev/aien-architecture) holds the doctrine, the decision records and the current execution plan. Its `PLAN_AUTHORITY.md` says which document wins when two disagree.
+- **Report or propose:** open an issue on the component repository the change belongs to. Issues move to [aienix](https://github.com/aien-dev/aienix) when the component does.
+- **Expect verification:** every contribution is judged on the Spark as described above, and a change is not complete until its evidence bundle is published.
+- **Website:** [aienos.com](https://www.aienos.com)
+
+## Licence
+
+AGPL-3.0-or-later. See [LICENSE](https://github.com/aien-dev/aienix/blob/main/LICENSE).
+
+<sub>Aienix is not a UNIX and makes no such claim. UNIX is a registered trademark of The Open Group. NVIDIA, DGX and Grace Blackwell are trademarks of NVIDIA Corporation.</sub>
