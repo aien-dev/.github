@@ -5,7 +5,7 @@
   <img src="assets/aienix-wordmark-light.svg" width="560" alt="Aienix: the core tree of AIEN">
 </picture>
 
-**Persistent machine intelligence on a machine you own, built in the open.**
+**Persistent machine intelligence on hardware you own**
 
 [What Aienix is](#what-aienix-is) ·
 [Status](#status) ·
