@@ -1,5 +1,70 @@
 <div align="center">
 
+<img src="assets/allen-hero.jpg" width="900" alt="Allen's window: a dark night sky with stars, galaxies and the Milky Way, a small glowing sphere of points in the middle (Allen), the word 'Hello Humanity' under him, and a bar at the bottom that says 'Speak to Allen'">
+
+# Allen
+
+**A presence you talk to, on a computer that runs our own kernel with nothing else underneath.**
+
+Today Allen draws his own sky, remembers his name across restarts, takes a typed line and answers: "Hello Allen" gets "Hello Humanity", and anything he does not know gets "I don't know that yet." Asking our 27B model through him has run in an emulator, not yet on the real iMac.
+
+[Meet Allen](https://www.aienos.com/allen/) ·
+[What is happening now](https://www.aienos.com/now/) ·
+[The code that draws him](https://github.com/aien-dev/aienos-mv/tree/903277b7ac5862d531fb5d6c00f0e66e7ef7cdb0/native/kernel/ui) ·
+[Where Allen runs](#where-allen-runs) ·
+[How Allen is drawn](#how-allen-is-drawn)
+
+<sub>This frame was drawn by Allen's own code, run on a host computer by the project's test (<a href="https://github.com/aien-dev/aienos-mv/tree/903277b7ac5862d531fb5d6c00f0e66e7ef7cdb0/native/kernel/ui/tests">allen_ui_test.c</a>, commit 903277b). It is not a photograph of the iMac's screen.</sub>
+
+</div>
+
+## When you type goodbye
+
+Allen's window ends the way a day ends. Everything falls into a black hole, its disk glows and dims, and the horizon closes to pure black. These are frames from the same test, one every 100 ms, played back at the speed they were drawn.
+
+<div align="center">
+
+<img src="assets/allen-dusk.gif" width="560" alt="A short loop of Allen's dusk: the night sky and Allen are pulled into a black hole, a glowing disk of light spirals round it, then the light fades until the screen is black">
+
+</div>
+
+The dusk is on a branch, [feat/goodbye-event-horizon](https://github.com/aien-dev/aienos-mv/tree/feat/goodbye-event-horizon), and has run on a host computer only. It has not been shown on the real iMac.
+
+## Where Allen runs
+
+| Where | What Allen does there today | What has not happened yet | Receipt |
+| :-- | :-- | :-- | :-- |
+| **Intel iMac 2017** (bare metal: our C kernel, no Linux, no other operating system) | The whole screen is Allen's window, 3840 by 2160. In the 2026-10-19 boot report the night was drawn in 476 ms, his window was up 18.6 s after power on (15.9 s of that is the Mac's own firmware before our kernel starts), the startup sound was handed to the sound chip and began playing, and he loaded his memory from his own section of the disk: his name and 19 earlier starts. | The dusk animation, the model answers and the typed-line exchange with the 27B have not run on this machine. The kernel on it is on an open stack of pull requests, not on main. | boot report on the Spark (kept off GitHub), kernel [0930240d](https://github.com/aien-dev/aienos-mv/commit/0930240d2aa550de95535c116eb10c2df466f616), [open pull requests](https://github.com/aien-dev/aienos-mv/pulls) |
+| **Raspberry Pi 5** (bare metal, AArch64) | The part of Allen that decides where a request should go (ALLEN REFLEX) runs in a native kernel image on the real Pi. In run pi5-allen-route-399b, 207 of 207 proposals matched the host's byte for byte and none granted anything. Median time per request 875 microseconds. | No screen and no typed input: Allen's window does not run on the Pi, and the image reads a card of requests, not a person. It is an open pull request, so not on main. | [pull request 402](https://github.com/aien-dev/aienos-mv/pull/402); the Pi also ran the kernel itself on 2026-10-13 ([evidence](https://github.com/aien-dev/aienos-mv/blob/main/evidence/pi5_hardware_runs_2026-10-13)) |
+| **Windows PC with an RTX 5070** | In progress. This is the target for AIEN Rig, a local AI engine inside a 12 GiB budget. On the Spark under that budget the engine runs Qwen3-8B at 15.63 tokens per second in FP8 and 20.17 in 4-bit. | Nothing of ours has run on a 5070, and Allen is not on it. | [Rig engine receipts](https://github.com/aien-dev/aien-sovereign-core-mv/tree/rig/engine-12gb/docs/inference/evidence/rig-engine-20261019), [aien-rig](https://github.com/aien-dev/aien-rig) |
+| **QEMU** (an emulator: a pretend computer inside a real one) | A typed line goes through the courier built into the kernel (over a serial line here, since the emulator has no network chip like the iMac's) to a relay, to the real 27B model, and the reply comes back into Allen's window: 22 of 22 checks. Every kernel gate runs here first. | An emulator qualifies nothing physical. The courier has not been tried over the iMac's real network chip. | branch [feat/allen-through-the-model](https://github.com/aien-dev/aienos-mv/tree/feat/allen-through-the-model), [kernel gates](https://github.com/aien-dev/aienos-mv/blob/main/native/kernel/GATES.md) |
+| **NVIDIA DGX Spark** | Runs Linux and serves Qwen3.8-27B on our own GPU engine, so Allen has a model to ask. It is also where every frame on this page was drawn and where every speed receipt is made. | Allen's window does not run on the Spark. One Allen runs on the machine you sit at. | [27B server receipt](https://github.com/aien-dev/aien-sovereign-core-mv/tree/qwen38/serve-fast/evidence/qwen38-serve-fast-20261019), 7.63 tokens per second |
+
+## How Allen is drawn
+
+Everything on Allen's screen is drawn by about 3,500 lines of C in the kernel itself ([native/kernel/ui](https://github.com/aien-dev/aienos-mv/tree/903277b7ac5862d531fb5d6c00f0e66e7ef7cdb0/native/kernel/ui), at commit 903277b). There is no graphics library, no font file and no image file. These are the parts:
+
+- **Integers only.** The drawing code has no floating point numbers. Sine and exponential tables are built when first used, by integer arithmetic, and everything after is whole numbers.
+- **The sky** ([night.c](https://github.com/aien-dev/aienos-mv/blob/903277b7ac5862d531fb5d6c00f0e66e7ef7cdb0/native/kernel/ui/night.c)). The soft parts (the Milky Way, dust, glow) are worked out at a quarter of the screen's resolution and dithered up so the faint gradients show no bands. The stars and six galaxies are drawn at full resolution on top. This is a drawn sky, not a star catalogue; a version built from real star data is being made.
+- **Bent light.** Two black holes spiral together and merge. Light round them bends by the point-mass lens equation: a star seen at angle theta really sits at theta minus E squared over theta, with E the Einstein radius. Stars behind a hole stretch into arcs, and a second image of each appears on the far side. When the holes merge, a ripple passes through the sky.
+- **Allen himself** ([mind.c](https://github.com/aien-dev/aienos-mv/blob/903277b7ac5862d531fb5d6c00f0e66e7ef7cdb0/native/kernel/ui/mind.c)). A small sphere of points joined by lines, tilted 20 degrees toward you, with more points inside it.
+- **Water and ink** ([flow.c](https://github.com/aien-dev/aienos-mv/blob/903277b7ac5862d531fb5d6c00f0e66e7ef7cdb0/native/kernel/ui/flow.c)). A tank of slightly thick water in 16.16 fixed point numbers. A push becomes a slow curl, not a splash, and both the ink and the motion fade on their own so the tank always comes to rest.
+- **His handwriting** ([allen_font.c](https://github.com/aien-dev/aienos-mv/blob/903277b7ac5862d531fb5d6c00f0e66e7ef7cdb0/native/kernel/ui/allen_font.c)). Each letter is a short recipe of moves, lines and arcs, drawn with round ends as the distance to a centre line, so it is sharp at any size.
+- **The startup sound** ([chirp.c](https://github.com/aien-dev/aienos-mv/blob/903277b7ac5862d531fb5d6c00f0e66e7ef7cdb0/native/kernel/ui/chirp.c)). Made from the same law that governs two merging black holes: the pitch rises as the share of the inspiral left to the power of minus three eighths, and the loudness follows. The iMac's boot report shows the sound chip starting it on the real machine.
+- **Putting a frame together.** The screen is a grid of tiles 64 by 32 pixels. Each frame marks only the tiles that moved, groups them into strips that never overlap, and lets every core claim strips one at a time. The layout is designed on a 1920 by 1080 grid and scaled to the screen.
+
+The dusk has its own checks in the host test: the light only falls after the disk's brightest moment, the middle of the screen is brighter than its edges mid-dusk, and the last frame is black in every pixel. A review of how true to real physics the pictures are is in progress, and the pictures claim no more than the checks above.
+
+---
+
+<div align="center">
+
+### The rest of AIEN
+
+</div>
+
+<div align="center">
+
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/aienix-wordmark-dark.svg">
   <img src="assets/aienix-wordmark-light.svg" width="560" alt="Aienix: the core tree of AIEN">
