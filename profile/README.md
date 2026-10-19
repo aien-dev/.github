@@ -14,6 +14,7 @@
 [The tree](#the-tree) ·
 [Research](#research) ·
 [How a change gets in](#how-a-change-gets-in) ·
+[Why it should be owned](#why-intelligence-should-be-owned) ·
 [Principles](#principles) ·
 [Licence](#licence)
 
@@ -148,6 +149,18 @@ Pull requests in the core repositories are judged on the Spark itself, by our ow
 What is true today beyond the core: aien-rig is checked on GitHub Actions (windows-latest, no GPU) because its target is a Windows machine the Spark cannot stand in for, and open-humanity is not yet judged by the Spark pipeline. The design is recorded in the architecture repository as [ADR 0033](https://github.com/aien-dev/aien-architecture-mv/tree/main/docs/adr).
 
 To get involved: read the [architecture repository](https://github.com/aien-dev/aien-architecture-mv) first (its `PLAN_AUTHORITY.md` says which document wins when two disagree), open issues on the component repository the change belongs to, and expect every contribution to be judged as above.
+
+## Why intelligence should be owned
+
+A language model learns from the written record of people: books, papers, code, forum answers, letters. Billions of people wrote that record. A company can pay for the computers and the training, and that work is real. The knowledge it turned into a model was ours to begin with, so a model is a common inheritance.
+
+It is our right to use the intelligence we created, which means holding a copy, running it on a machine we own, and changing it. It is also our responsibility: a right nobody uses does not last. Renting compute is fine. A paywall that is the only door is not.
+
+AIEN is my attempt to keep the other door open. The tree is public under AGPL-3.0-or-later. A 27B model runs on our own engine on one DGX Spark at 7.63 tokens a second against a ceiling of 10.15, which is 75.17 percent of the ceiling ([receipt](https://github.com/aien-dev/aien-sovereign-core-mv/tree/qwen38/serve-fast/evidence/qwen38-serve-fast-20261019), on a branch not merged yet). The model was trained by others and keeps its maker's licence. We have not trained one of our own, and the install guide failed its first test. Read the full argument at [aienos.com/owned](https://www.aienos.com/owned/).
+
+Run it yourself. Break the guide and tell us where. Send a change. Publish what you measure, good or bad.
+
+Drake Stapleton
 
 ## Principles
 
