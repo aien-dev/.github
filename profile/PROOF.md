@@ -35,7 +35,9 @@ chip time per token     70.33 ms median = 14.22 tokens/s while the GPU works
 
 From an empty folder to the GPU step took 12.9 minutes (calc:e412ee1c): Rust 9.6 s, sources 11.5 s, build 138.3 s,
 weights 299.6 s, convert 315.8 s. A token is a word piece, the unit a model writes. The full output, the answer and
-the timings are in the [demo receipt][demo], so you can compare your run with ours.
+the timings are in the [demo receipt][demo], so you can compare your run with ours. Timed again on its own, while another job
+was sharing the GPU, the GPU step took 107.3 s end to end and wrote exactly the same 83 tokens; setup plus that step
+is 14.7 minutes (calc:3cb838d3).
 
 ## The numbers, and what each one measures
 
