@@ -20,7 +20,7 @@ Or from GitHub: `git clone https://github.com/aien-dev/aienos.com && sh aienos.c
 What it does, in order: checks the machine, installs Rust inside its own folder if you have none, fetches three source
 repositories at pinned commits, builds Omega and the demo, downloads the official Qwen3.8-27B-FP8 weights at a pinned
 revision and checks the sha256 of every file, converts them once to 4 bits, answers one prompt and prints the speed.
-Everything stays in one folder (`./aien-demo`, 43 GB when our run finished; the script asks for 70 GB free). No sudo, no system packages.
+Everything stays in one folder (`./aien-demo`, 43 GB when our run finished; the note inside the script says about 65 GB and it asks for 70 GB free). No sudo, no system packages.
 
 Our clean run, on a Spark that was busy with other work, printed this at the end:
 
@@ -59,14 +59,14 @@ the GPU is working; wall clock also counts the host's time between tokens.
 
 ## What it is not
 
-- It is one model (Qwen3.8-27B), one prompt at a time, greedy decoding. No batching, no server in this demo.
+- It is one model (Qwen3.8-27B), one prompt at a time, greedy decoding (always the most likely next token). No batching, no server in this demo.
 - The prompt is read one token at a time through the same path as writing. Short prompts are quick; a 2,047-token prompt
   takes about 148 s ([README][w4readme]). A faster prompt path is the next piece of work.
 - 4 bits loses some accuracy against 8 bits. The 4-bit check passed every line of marks frozen before the run
   ([w4-fit-gate.json][gate]); the same next token as 8 bits on 0.938 of positions pooled over five scored texts (limit 0.87, [NOTES.md][w4notes]).
 - Tested only on driver 580.173.02. The driver interface is pinned to that version; the script stops on any other.
 - The GPU's own firmware (GSP, from NVIDIA, loaded by nvidia.ko) still runs. What is gone is the user-space CUDA stack.
-- The code it builds is on public branches that are waiting for review, not yet on `main`. The commits are pinned and
+- Omega and the host side are on public branches in review; the driver file is already on `main`. The commits are pinned and
   tagged `demo-l182-v1`, so they will not move.
 
 ## How Omega talks to the GPU
@@ -89,7 +89,7 @@ Astra, from one chat on the Spark itself. The rules that made that work:
 - **A ledger.** Every job is a line with an owner and a "done when". Agents write what they did beside it.
 - **One PR desk.** One agent alone opens and merges pull requests, in order, after the judge passes them.
 - **No guessed numbers.** A figure is published only if it points to a measurement, and arithmetic goes through a
-  calculator that returns a receipt id.
+  calculator that returns a receipt id. The calculator ledger is internal; the inputs are in the linked files.
 
 The plan that ties it together is [the Omega Program][program].
 

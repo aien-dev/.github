@@ -34,6 +34,6 @@ A token is a word piece, the unit a model writes. Each 4-bit token reads all 13.
 
 - [The proof, in full](https://www.aienos.com/proof/) (also [PROOF.md](PROOF.md)): what it is, what it is not, how it was built.
 - [Omega](https://github.com/aien-dev/omega-mv), the engine. [The Omega Program](https://github.com/aien-dev/omega-mv/blob/4aa7d6ca/docs/PROGRAM.md), the plan.
-- [Aienux](https://github.com/aien-dev/aienos-mv), the kernel. [AienOS](https://github.com/aien-dev/aienix), the operating system.
+- [Aienux](https://github.com/aien-dev/aienos-mv), the kernel. [AienOS](https://github.com/aien-dev/aienix), the operating system. (Repository names predate the rename.)
 - [Receipts](https://github.com/aien-dev/aien-receipts), signed by the Spark judge.
 - [The long version](DETAILS.md) of this page: machines, the tree, research and how a change gets in.
