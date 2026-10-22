@@ -106,11 +106,11 @@ The live ledger is at **[www.aienos.com/now/](https://www.aienos.com/now/)**. Co
 
 ## The tree
 
-The core repositories. **AienOS** is the operating-system project; **Aienux** is its kernel. The legacy `aienix` repository address is retained as the pinned front door, not a second product name.
+The core repositories. **AienOS** is the operating-system project; **Aienux** is its kernel. Start with the front door for component pins and learning routes.
 
 | Repository | What it is |
 | :-- | :-- |
-| [aienix, the AienOS front door](https://github.com/aien-dev/aienix) | Pinned component identities, learning routes and the cross-repository teaching tracker. Not a completed monorepo import. |
+| [AienOS, the project front door](https://github.com/aien-dev/aienix) | Pinned component identities, learning routes and the cross-repository teaching tracker. Not a completed monorepo import. |
 | [aienux](https://github.com/aien-dev/aienux) | Aienux: my operating system kernel in C, the QEMU gates, and Allen's window. Pre-alpha. |
 | [omega-mv](https://github.com/aien-dev/omega-mv) | Omega: my language for verified programs, its checker, and the GB10 GPU engine. |
 | [CUDApp](https://github.com/aien-dev/CUDApp) | CUDA++: the GPU half of Omega on its own, MIT. No NVIDIA user-space software. |
