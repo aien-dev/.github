@@ -38,7 +38,9 @@ The banner and Allen animation come from the kernel's own renderer, not generate
 
 ## The stack
 
-<p align="center"><a href="https://github.com/aien-dev/aienix"><img src="assets/fig/stack.svg" width="100%" alt="What runs on top of what: Allen on the iMac screen, the model server, Omega, CUDA++, the Aienux kernel, and the machines."></a></p>
+The Spark model server is Linux-hosted; Allen and Aienux have a separate bare-metal/emulator path. This is a component map, not a claim that the deployed model server runs under the new kernel.
+
+<p align="center"><a href="https://github.com/aien-dev/aienix"><img src="assets/fig/stack.svg" width="100%" alt="Two execution paths: Linux-hosted inference on the Spark, and Allen/Aienux on lab hardware or QEMU. No unified boot-chain qualification is implied."></a></p>
 
 ## Allen
 
@@ -52,16 +54,16 @@ When you type goodbye, his day ends the way a day ends: everything falls into a 
 
 <p align="center"><a href="https://github.com/aien-dev/CUDApp"><img src="assets/fig/cudapp-hero.svg" width="100%" alt="CUDA++: my own path from a program to an NVIDIA GPU, and the 32 instructions of the first kernel it ran, drawn bit by bit."></a></p>
 
-[CUDA++](https://github.com/aien-dev/CUDApp) is the GPU half of Omega as its own MIT project: the toolchain that writes the GPU's machine code, the runtime, the libraries and the driver client, with no CUDA toolkit, no `nvcc`, no PTX and no `libcuda`. I reverse engineered the undocumented machine code of the GB10 and wrote my own encoder for it; the whole method is in [docs/HOW_I_DID_IT.md](https://github.com/aien-dev/CUDApp/blob/main/docs/HOW_I_DID_IT.md) and the driver is explained part by part on the [repository front page](https://github.com/aien-dev/CUDApp). Today the live 35B model server runs on it with zero CUDA libraries loaded ([receipt](https://github.com/aien-dev/omega-mv/blob/89aad7c99b4fced80f92b656d2a3f350699456f0/evidence/WHAT-OMEGA-IS-20261021/live-serve-no-cuda.txt)); next it replaces NVIDIA's kernel modules ([L332](https://www.aienos.com/now/#L332)) and swaps in as a drop-in `libcuda` ([L401](https://www.aienos.com/now/#L401)).
+[CUDA++](https://github.com/aien-dev/CUDApp) is the GPU half of Omega as its own MIT project: the toolchain that writes the GPU's machine code, the runtime, the libraries and the driver client, with no CUDA toolkit, no `nvcc`, no PTX and no `libcuda`. I reverse engineered the undocumented machine code of the GB10 and wrote my own encoder for it; the whole method is in [docs/HOW_I_DID_IT.md](https://github.com/aien-dev/CUDApp/blob/main/docs/HOW_I_DID_IT.md) and the driver is explained part by part on the [repository front page](https://github.com/aien-dev/CUDApp). A retained 2026-10-21 receipt records a 35B model server running on it with zero CUDA libraries loaded ([receipt](https://github.com/aien-dev/omega-mv/blob/89aad7c99b4fced80f92b656d2a3f350699456f0/evidence/WHAT-OMEGA-IS-20261021/live-serve-no-cuda.txt)); next it replaces NVIDIA's kernel modules ([L332](https://www.aienos.com/now/#L332)) and swaps in as a drop-in `libcuda` ([L401](https://www.aienos.com/now/#L401)).
 
 ## The machines
 
-<p align="center"><a href="https://github.com/aien-dev/aienux"><img src="assets/fig/machines.svg" width="100%" alt="Five machines: the DGX Spark that serves and judges, the iMac that boots Aienux, the Raspberry Pi 5, QEMU, and the Windows PC that is the target for AIEN Rig."></a></p>
+<p align="center"><a href="https://github.com/aien-dev/aienux"><img src="assets/fig/machines.svg" width="100%" alt="Hardware and an emulator: DGX Spark, iMac, Raspberry Pi 5, QEMU, and the Windows target for AIEN Rig."></a></p>
 
-- **DGX Spark** serves the 35B model on my own engine, and its judge rules every pull request. [The server's mapped libraries, receipt](https://github.com/aien-dev/omega-mv/blob/89aad7c99b4fced80f92b656d2a3f350699456f0/evidence/WHAT-OMEGA-IS-20261021/live-serve-no-cuda.txt).
+- **DGX Spark** is the development and verification host. The [retained 2026-10-21 model-server receipt](https://github.com/aien-dev/omega-mv/blob/89aad7c99b4fced80f92b656d2a3f350699456f0/evidence/WHAT-OMEGA-IS-20261021/live-serve-no-cuda.txt) records its mapped libraries; this profile refresh is not a new live-server qualification.
 - **Intel iMac 2017** boots [Aienux](https://github.com/aien-dev/aienux) on bare metal; [boot evidence](https://github.com/aien-dev/aienux/tree/main/evidence/imac_kernel1_2026-10-17). The kernel it runs is on an [open pull request stack](https://github.com/aien-dev/aienux/pulls), not yet main.
 - **Raspberry Pi 5** ran the same kernel on real hardware ([evidence](https://github.com/aien-dev/aienux/tree/main/evidence/pi5_hardware_runs_2026-10-13)) and hosts the [readings window](https://github.com/aien-dev/readings-window).
-- **QEMU** runs every kernel gate first; an emulator qualifies nothing physical ([gates](https://github.com/aien-dev/aienux/blob/main/native/kernel/GATES.md)).
+- **QEMU** provides the kernel emulator-gate route; an emulator qualifies nothing physical ([gates](https://github.com/aien-dev/aienux/blob/main/native/kernel/GATES.md)).
 - **Windows PC, RTX 5070** is the target for [AIEN Rig](https://github.com/aien-dev/aien-rig): a local AI engine in a 12 GB budget, measured so far on the Spark ([receipts](https://github.com/aien-dev/aien-sovereign-core-mv/tree/rig/engine-12gb/docs/inference/evidence/rig-engine-20261019)). Nothing of mine has run on the card yet.
 
 ## Tags and downloads
@@ -70,11 +72,11 @@ These are **existing GitHub tags and published prereleases**, checked on 2026-10
 
 | Component | Actual GitHub feature | Scope |
 | :-- | :-- | :-- |
-| CUDA++ | [alpha-0.1 prerelease](https://github.com/aien-dev/CUDApp/releases/tag/alpha-0.1) · [all tags](https://github.com/aien-dev/CUDApp/tags) | Existing GPU-project assets, not an AienOS installer or general hardware qualification. |
-| Aienux | [alpha-0.1 prerelease](https://github.com/aien-dev/aienux/releases/tag/alpha-0.1) · [all tags](https://github.com/aien-dev/aienux/tags) | Existing kernel-repository artifact. Its About text says the kernel repo is not the product download and bare metal is not qualified. |
-| Host runtime | [v0.1.1 prerelease](https://github.com/aien-dev/aien-sovereign-core-mv/releases/tag/v0.1.1) · [all releases](https://github.com/aien-dev/aien-sovereign-core-mv/releases) | Published historical runtime assets, not qualification of today's moving main. |
-| Omega | [actual tags](https://github.com/aien-dev/omega-mv/tags) | Provenance and experiment tags include both PASS and FAIL names. No published release was listed at the audit. |
-| FORGE | [demo-l182-v1 tag](https://github.com/aien-dev/physics-mv/tree/demo-l182-v1) | A demo source identity, not a published product release. |
+| CUDA++ | [alpha-0.1 prerelease](https://github.com/aien-dev/CUDApp/releases/tag/alpha-0.1) · [all tags](https://github.com/aien-dev/CUDApp/tags) | GPU project only; read its hardware limits. |
+| Aienux | [alpha-0.1 prerelease](https://github.com/aien-dev/aienux/releases/tag/alpha-0.1) · [all tags](https://github.com/aien-dev/aienux/tags) | Kernel artifact, not a whole-system installer or a bare-metal qualification. |
+| Host runtime | [v0.1.1 prerelease](https://github.com/aien-dev/aien-sovereign-core-mv/releases/tag/v0.1.1) · [all releases](https://github.com/aien-dev/aien-sovereign-core-mv/releases) | Historical runtime assets; not current-main qualification. |
+| Omega | [actual tags](https://github.com/aien-dev/omega-mv/tags) | Experiment/provenance tags include failures. No published release at audit. |
+| FORGE | [demo-l182-v1 tag](https://github.com/aien-dev/physics-mv/tree/demo-l182-v1) | Demo source identity; no product release. |
 
 **AienOS has no published whole-stack release in this inventory.** Empty release pages do not become downloads because the profile looks polished. Draft releases are not advertised as public availability. Upstream tags in preservation forks retain their original attribution.
 
@@ -90,7 +92,7 @@ The following are retained **historical experiment snapshots**, not live telemet
 | **27B model, live server decode**, median of 4 runs of 256 greedy tokens | 7.63 tokens/s | 0.752 of that model's 10.15 tokens/s memory ceiling; my previous server: 6.29 | [branch qwen38/serve-fast, evidence](https://github.com/aien-dev/aien-sovereign-core-mv/tree/qwen38/serve-fast/evidence/qwen38-serve-fast-20261019) |
 | **Ceiling probes on the GB10**, my own kernels | 115.14 TFLOPS tensor-core peak, 195.1 GB/s reads | the machine's physical limits, measured | [in CUDA++, evidence](https://github.com/aien-dev/CUDApp/tree/main/evidence/OWN30B-T3-TC-PEAK-BW-5faa0f70-20261013T2236Z) |
 
-Numbers on branches say so. The same-model measurement against llama.cpp and vLLM is running ([L394](https://www.aienos.com/now/#L394)); when it lands its table goes here, losses included.
+Numbers on branches say so. Same-model comparison work is tracked separately ([L394](https://www.aienos.com/now/#L394)); this retained snapshot does not assert its current execution status or invent a comparison result.
 
 ## Follow the work
 
@@ -145,7 +147,7 @@ The core repositories. **AienOS** is the operating-system project; **Aienux** is
 
 <p align="center"><a href="https://github.com/aien-dev/aien-receipts"><img src="assets/fig/merge-flow.svg" width="100%" alt="A branch is judged by the Spark, a signed receipt is published, the hosted check confirms the bundle matches, and only then does the pipeline merge."></a></p>
 
-The repositories' gate manifests, the judge and the whole design are described in [aien-architecture-mv](https://github.com/aien-dev/aien-architecture-mv) ([ADR 0033](https://github.com/aien-dev/aien-architecture-mv/tree/main/docs/adr)). To take part: open issues on the repository the change belongs to, and expect your change to be judged exactly as mine are.
+The gate manifests, judge and intended verification workflow are described in [aien-architecture-mv](https://github.com/aien-dev/aien-architecture-mv) ([ADR 0033](https://github.com/aien-dev/aien-architecture-mv/tree/main/docs/adr)). Actual coverage depends on repository enrollment and the exact revision's manifest and required checks. To take part, open an issue in the component repository and include the reproduction and evidence that its contribution guide requires.
 
 <details>
 <summary><strong>Research</strong> (preprints, none peer reviewed)</summary>
@@ -166,7 +168,7 @@ Papers live at [www.aienos.com/research/](https://www.aienos.com/research/), eac
 ## Principles
 
 - **Closest to the metal.** The fastest correct path wins, and headline numbers are reported as a fraction of the machine's physical limit.
-- **Sovereign.** No outside dependencies in the trusted base: no CUDA toolkit in the GPU path, no systemd under the kernel, builds offline and reproducible.
+- **Sovereign.** The destination is a self-owned trusted base. Each current recipe must state its host tools, downloads and remaining dependencies rather than call every build already dependency-free and offline.
 - **Omega is the destination.** Existing C and Rust paths are not retired merely because their replacements are planned. Cutovers need equivalence and qualification evidence.
 - **Evidence or nothing.** A result is not demonstrated until a receipt for it exists. A target is never evidence of itself.
 - **Compare, and say where I lose.** Progress is measured against the machine's physical ceiling, my own previous runs, and other systems' published numbers on the same hardware, each labelled measured by me or published by others.
@@ -174,6 +176,6 @@ Papers live at [www.aienos.com/research/](https://www.aienos.com/research/), eac
 
 ## Licence
 
-AGPL-3.0-or-later for the tree ([LICENSE](https://github.com/aien-dev/aienux/blob/main/LICENSE)), CUDA++ MIT, interplane-mv Apache-2.0. Each repository carries its own LICENSE file.
+This profile repository carries [AGPL-3.0](../LICENSE). Product components, forks, standards and models keep their own licences; this page does not apply one blanket licence to the whole stack. Read the `LICENSE` in the exact component revision you use.
 
 <sub>AienOS is not a UNIX and makes no such claim. UNIX is a registered trademark of The Open Group. NVIDIA, DGX and Grace Blackwell are trademarks of NVIDIA Corporation. Raspberry Pi is a trademark of Raspberry Pi Ltd. CUDA is a trademark of NVIDIA Corporation; CUDA++ is not affiliated with or endorsed by NVIDIA.</sub>

@@ -22,51 +22,47 @@ OUT = os.path.join(ROOT, "assets", "fig")
 
 # ---- the stack: what runs on top of what ------------------------------------
 def fig_stack():
-    s = Svg(1200, 700, "The AienOS stack",
-            "What runs on top of what: Allen on top, the model server, Omega, "
-            "CUDA++, the Aienux kernel, and the machines underneath.")
+    s = Svg(1200, 650, "Two AienOS execution paths",
+            "The Linux-hosted Spark inference path is separate from Allen and the Aienux kernel hardware/emulator path.")
     s.frame()
-    s.kicker(48, 60, "the stack")
-    s.text(48, 100, "What runs on top of what", size=30, weight=800, ls=-0.5)
-    rows = [
-        ("Allen", "the presence on the iMac screen: sky, water, the voice of the house", GREEN,
-         "his window is about 3,500 lines of C in the kernel"),
-        ("Model server", "the 35B model the machines talk to, on the Spark", BLUE_SOFT,
-         "runs with zero CUDA libraries loaded"),
-        ("Omega", "my language for verified programs, its checker, the GPU engine", VIOLET,
-         "kernels are written, checked and encoded here"),
-        ("CUDA++", "the GPU toolchain, runtime, libraries and driver client, MIT", CYAN,
-         "machine code straight to the chip: no nvcc, no libcuda"),
-        ("Aienux", "my operating system kernel in C: iMac, Pi 5, QEMU gates", AMBER,
-         "no Linux under it where it runs on metal"),
-        ("The machines", "one DGX Spark, one 2017 iMac, one Raspberry Pi 5, one RTX 5070 PC", INK2,
-         "hardware I own, not rented"),
-    ]
-    y, rh, gap = 150, 72, 14
-    s.rect(104, y - 14, 832, rh * 6 + gap * 5 + 28, fill=GREEN, rx=20, op=0.03)
-    for i, (name, sub, col, note) in enumerate(rows):
-        card(s, 120, y, 800, rh, accent=col)
-        s.rect(120, y + 10, 4, rh - 20, fill=col, rx=2)
-        s.text(146, y + 30, name, size=21, weight=750, fill=col)
-        s.text(146, y + 56, sub, size=14.5, fill=INK)
-        for j, l in enumerate(_wrap(note, 33)[:2]):
-            s.text(944, y + 32 + j * 19, l, size=12.5, fill=INK2)
-        if i < len(rows) - 1:
-            s.line(520, y + rh + 2, 520, y + rh + gap - 2, stroke=INK2, sw=1.6, arrow=True)
-        y += rh + gap
+    s.kicker(48, 60, "the component map")
+    s.text(48, 100, "Two execution paths, not one deployed boot chain", size=29, weight=800, ls=-0.5)
+    s.text(48, 139, "Spark / Linux host", size=17, fill=CYAN, weight=750)
+    s.text(632, 139, "Aienux kernel / lab targets", size=17, fill=GREEN, weight=750)
+    columns = [
+        (48, CYAN, [
+            ("Model server", "Hosted inference; the linked receipt records its exact build."),
+            ("Omega", "Compiler, checker and GPU engine; source lineage matters."),
+            ("CUDA++", "GPU toolchain and driver client; kernel replacement is separate.")]),
+        (632, GREEN, [
+            ("Allen", "Kernel-rendered presence and input; behavior depends on the build."),
+            ("Aienux", "Kernel memory, interrupts, scheduling, IPC and capability checks."),
+            ("Lab targets", "iMac, Pi 5 and QEMU have separate qualification evidence.")])]
+    for x, col, rows in columns:
+        for i, (name, sub) in enumerate(rows):
+            y = 172 + i * 122
+            card(s, x, y, 520, 96, accent=col)
+            s.rect(x, y + 10, 4, 76, fill=col, rx=2)
+            s.text(x + 24, y + 32, name, size=23, weight=750, fill=col)
+            for j, line in enumerate(_wrap(sub, 65)):
+                s.text(x + 24, y + 58 + j * 19, line, size=14, fill=INK2)
+            if i < len(rows) - 1:
+                s.line(x + 260, y + 99, x + 260, y + 118, stroke=INK2, sw=1.6, arrow=True)
+    s.text(48, 566, "The model server is not claimed to run under Aienux. Host, QEMU and physical-machine results stay separate.", size=16, fill=INK)
+    s.text(48, 604, "Follow each component's source, build pin and receipt from the README. The map is not a whole-stack qualification.", size=14, fill=INK3)
     return s
 
 
 # ---- the machines -------------------------------------------------------------
 def fig_machines():
     s = Svg(1200, 520, "The machines",
-            "Five machines: the Spark that judges and serves, the iMac that "
+            "Hardware and an emulator: the Spark that judges and serves, the iMac that "
             "boots Aienux, the Pi 5, QEMU, and the Windows PC that is the target for Rig.")
     s.frame()
     s.kicker(48, 60, "the machines")
-    s.text(48, 100, "Five machines, all mine", size=30, weight=800, ls=-0.5)
+    s.text(48, 100, "Hardware and an emulator", size=30, weight=800, ls=-0.5)
     ms = [
-        ("DGX Spark", "GB10, 128 GB unified memory", "development box and the judge. Serves the 35B model on my own engine. Every chip run happens here.", GREEN, "running my stack now"),
+        ("DGX Spark", "GB10, 128 GB unified memory", "development box and the judge. Serves the 35B model on my own engine. Every chip run happens here.", GREEN, "hosted execution"),
         ("Intel iMac 2017", "iMac18,3, Core i5, AMD GPU", "boots Aienux on bare metal. The whole screen is Allen's window.", BLUE_SOFT, "booting my kernel"),
         ("Raspberry Pi 5", "BCM2712, AArch64", "first real hardware for the AArch64 kernel, and the house server for the readings window.", VIOLET, "two jobs"),
         ("QEMU", "AArch64 and x86_64", "every kernel change runs its gates here first. An emulator qualifies nothing physical.", AMBER, "the gate before metal"),
@@ -146,7 +142,7 @@ def fig_speed():
     s.line(lx, 324, lx + 40, 324, stroke=INK3, sw=2.5, dash="7 5")
     s.circle(lx + 20, 324, 5, fill=INK3)
     s.text(lx + 52, 329, "one row after another", size=15, weight=700, fill=INK2)
-    s.lines(lx + 52, 353, ["the old way: same chip,", "same work, a third of the words"], size=13.5, fill=INK2, gap=19)
+    s.lines(lx + 52, 353, ["the sequential reference,", "on the same chip"], size=13.5, fill=INK2, gap=19)
     s.lines(lx, 450, ["At 32 conversations the batched door", "reaches 65.7 tok/s, past the 63.25", "one-conversation ceiling: all rows", "share the same weight reads."],
             size=13.5, fill=INK2, gap=20)
     s.text(48, s.h - 20, "Receipt: aien-sovereign-core-mv, branch serve/q36-batch-v2 (9c62690a), "
