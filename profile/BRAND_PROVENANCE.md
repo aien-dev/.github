@@ -26,3 +26,12 @@ python3 profile/tools/make_github_previews.py
 - Seventeen public repositories' About descriptions, homepage URLs and actual topics were updated and read back. Private repository topics were not changed: GitHub documents that topic names themselves are public.
 
 The profile README and community defaults on this branch still require authorized desk integration. Applied metadata, avatar/pins and a custom social image are separate facts from README publication. No Git tag or release was created, moved, deleted or promoted for appearance. No visibility, protection, disabled-issue setting or default branch was changed.
+
+
+## Theme-matched wordmark
+
+The dark/light AienOS wordmarks replace the block-grid icon with the existing Allen orb pixels. [make_wordmarks.py](tools/make_wordmarks.py) takes the central half-width square of the renderer-derived avatar, resizes it to192px and embeds the actual PNG into each self-contained SVG. No stars or orb points are synthesized. Blue-violet lettering, lighter system typography and a restrained halo match the banner; the light variant uses darker ink for contrast. No remote font or image is fetched by either SVG.
+
+```sh
+uv run --with pillow python profile/tools/make_wordmarks.py
+```
