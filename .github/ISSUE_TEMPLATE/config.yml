@@ -1,0 +1,11 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Learn the stack and choose a component
+    url: https://github.com/aien-dev/aienix
+    about: Start with the source-linked learning route and component index.
+  - name: Contribution and evidence requirements
+    url: https://github.com/aien-dev/.github/blob/main/CONTRIBUTING.md
+    about: Read the exact-source, privacy and verification expectations before proposing a change.
+  - name: Security reporting policy
+    url: https://github.com/aien-dev/.github/blob/main/SECURITY.md
+    about: Read the security policy before posting sensitive vulnerability details.

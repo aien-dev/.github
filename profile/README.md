@@ -9,26 +9,36 @@
 
 **Persistent machine intelligence on hardware I own.**
 
-[What this is](#what-this-is) ·
-[The stack](#the-stack) ·
-[Allen](#allen) ·
-[CUDA++](#cuda) ·
-[The machines](#the-machines) ·
-[Speed, with receipts](#speed-with-receipts) ·
-[Right now](#right-now) ·
-[The tree](#the-tree) ·
-[How a change gets in](#how-a-change-gets-in) ·
-[Principles](#principles)
+[Start learning](#start-here) ·
+[Explore the source](#the-tree) ·
+[Tags and downloads](#tags-and-downloads) ·
+[Evidence](#speed-with-receipts) ·
+[Contribute](https://github.com/aien-dev/.github/blob/main/CONTRIBUTING.md)
 
 </div>
 
 ## What this is
 
-I am building a computing stack that runs on machines I own, with nothing in its trusted base that depends on an outside service: my own kernel (Aienux), my own language and GPU engine (Omega), a host runtime and model server, and a pipeline that judges every change on my own hardware and publishes the evidence. I work alone and direct AI agents as tools: they write, test and review; I decide. It is pre-alpha and says so. Every claim on this page links to the commit, pull request or receipt it comes from.
+I am Drake Stapleton. I am building a computing stack for hardware I own: the Aienux kernel, Omega, CUDA++, a host runtime and Allen. I direct AI agents as implementation, testing and review tools. The goal is a self-owned trusted base and results that can be traced to their source. Existing C and Rust paths, seed-born Omega work and hardware qualification are distinct stages, not one finished replacement.
+
+> [!NOTE]
+> **Pre-alpha, with evidence rather than a blanket readiness claim.** The front door pins separate component repositories. A published tag, a host test, an emulator run and a physical-machine result establish different things. Branch-only work is labelled below; private component details are not published here.
+
+## Start here
+
+| If you want to… | Start with | What you get |
+| :-- | :-- | :-- |
+| **Understand the stack** | [AienOS learning front door](https://github.com/aien-dev/aienix) · [teaching tracker](https://github.com/aien-dev/aienix/issues/9) | A no-specialist-hardware route, source walkthroughs, prerequisites and expected results. |
+| **Read the GPU implementation** | [CUDA++](https://github.com/aien-dev/CUDApp) | Machine-code encoding, driver boundaries and the existing first-kernel guide. |
+| **Follow decisions into code** | [Architecture and ADRs](https://github.com/aien-dev/aien-architecture-mv) | Design reasons, contracts and implementation mapping. |
+| **Check a claim** | [Receipt shelf](https://github.com/aien-dev/aien-receipts) · [research status](https://www.aienos.com/research/status/) | Exact-source verdicts, retained failures and qualification boundaries. |
+| **Find current work** | [Live work ledger](https://www.aienos.com/now/) · [repositories by topic](https://github.com/orgs/aien-dev/repositories?q=topic%3Aaienos) | Named work and repository discovery, not an assertion that everything is complete. |
+
+The banner and Allen animation come from the kernel's own renderer, not generated promotional art. [Website](https://www.aienos.com) · [Contribution guide](https://github.com/aien-dev/.github/blob/main/CONTRIBUTING.md) · [Support](https://github.com/aien-dev/.github/blob/main/SUPPORT.md) · [Security policy](https://github.com/aien-dev/.github/blob/main/SECURITY.md)
 
 ## The stack
 
-<p align="center"><img src="assets/fig/stack.svg" width="100%" alt="What runs on top of what: Allen on the iMac screen, the model server, Omega, CUDA++, the Aienux kernel, and the machines."></p>
+<p align="center"><a href="https://github.com/aien-dev/aienix"><img src="assets/fig/stack.svg" width="100%" alt="What runs on top of what: Allen on the iMac screen, the model server, Omega, CUDA++, the Aienux kernel, and the machines."></a></p>
 
 ## Allen
 
@@ -40,13 +50,13 @@ When you type goodbye, his day ends the way a day ends: everything falls into a 
 
 ## CUDA++
 
-<p align="center"><img src="assets/fig/cudapp-hero.svg" width="100%" alt="CUDA++: my own path from a program to an NVIDIA GPU, and the 32 instructions of the first kernel it ran, drawn bit by bit."></p>
+<p align="center"><a href="https://github.com/aien-dev/CUDApp"><img src="assets/fig/cudapp-hero.svg" width="100%" alt="CUDA++: my own path from a program to an NVIDIA GPU, and the 32 instructions of the first kernel it ran, drawn bit by bit."></a></p>
 
 [CUDA++](https://github.com/aien-dev/CUDApp) is the GPU half of Omega as its own MIT project: the toolchain that writes the GPU's machine code, the runtime, the libraries and the driver client, with no CUDA toolkit, no `nvcc`, no PTX and no `libcuda`. I reverse engineered the undocumented machine code of the GB10 and wrote my own encoder for it; the whole method is in [docs/HOW_I_DID_IT.md](https://github.com/aien-dev/CUDApp/blob/main/docs/HOW_I_DID_IT.md) and the driver is explained part by part on the [repository front page](https://github.com/aien-dev/CUDApp). Today the live 35B model server runs on it with zero CUDA libraries loaded ([receipt](https://github.com/aien-dev/omega-mv/blob/89aad7c99b4fced80f92b656d2a3f350699456f0/evidence/WHAT-OMEGA-IS-20261021/live-serve-no-cuda.txt)); next it replaces NVIDIA's kernel modules ([L332](https://www.aienos.com/now/#L332)) and swaps in as a drop-in `libcuda` ([L401](https://www.aienos.com/now/#L401)).
 
 ## The machines
 
-<p align="center"><img src="assets/fig/machines.svg" width="100%" alt="Five machines: the DGX Spark that serves and judges, the iMac that boots Aienux, the Raspberry Pi 5, QEMU, and the Windows PC that is the target for AIEN Rig."></p>
+<p align="center"><a href="https://github.com/aien-dev/aienux"><img src="assets/fig/machines.svg" width="100%" alt="Five machines: the DGX Spark that serves and judges, the iMac that boots Aienux, the Raspberry Pi 5, QEMU, and the Windows PC that is the target for AIEN Rig."></a></p>
 
 - **DGX Spark** serves the 35B model on my own engine, and its judge rules every pull request. [The server's mapped libraries, receipt](https://github.com/aien-dev/omega-mv/blob/89aad7c99b4fced80f92b656d2a3f350699456f0/evidence/WHAT-OMEGA-IS-20261021/live-serve-no-cuda.txt).
 - **Intel iMac 2017** boots [Aienux](https://github.com/aien-dev/aienux) on bare metal; [boot evidence](https://github.com/aien-dev/aienux/tree/main/evidence/imac_kernel1_2026-10-17). The kernel it runs is on an [open pull request stack](https://github.com/aien-dev/aienux/pulls), not yet main.
@@ -54,9 +64,25 @@ When you type goodbye, his day ends the way a day ends: everything falls into a 
 - **QEMU** runs every kernel gate first; an emulator qualifies nothing physical ([gates](https://github.com/aien-dev/aienux/blob/main/native/kernel/GATES.md)).
 - **Windows PC, RTX 5070** is the target for [AIEN Rig](https://github.com/aien-dev/aien-rig): a local AI engine in a 12 GB budget, measured so far on the Spark ([receipts](https://github.com/aien-dev/aien-sovereign-core-mv/tree/rig/engine-12gb/docs/inference/evidence/rig-engine-20261019)). Nothing of mine has run on the card yet.
 
+## Tags and downloads
+
+These are **existing GitHub tags and published prereleases**, checked on 2026-10-22, not new release claims. Read each release's own platform, assets and limitations before running anything. No tag was created or moved for this page.
+
+| Component | Actual GitHub feature | Scope |
+| :-- | :-- | :-- |
+| CUDA++ | [alpha-0.1 prerelease](https://github.com/aien-dev/CUDApp/releases/tag/alpha-0.1) · [all tags](https://github.com/aien-dev/CUDApp/tags) | Existing GPU-project assets, not an AienOS installer or general hardware qualification. |
+| Aienux | [alpha-0.1 prerelease](https://github.com/aien-dev/aienux/releases/tag/alpha-0.1) · [all tags](https://github.com/aien-dev/aienux/tags) | Existing kernel-repository artifact. Its About text says the kernel repo is not the product download and bare metal is not qualified. |
+| Host runtime | [v0.1.1 prerelease](https://github.com/aien-dev/aien-sovereign-core-mv/releases/tag/v0.1.1) · [all releases](https://github.com/aien-dev/aien-sovereign-core-mv/releases) | Published historical runtime assets, not qualification of today's moving main. |
+| Omega | [actual tags](https://github.com/aien-dev/omega-mv/tags) | Provenance and experiment tags include both PASS and FAIL names. No published release was listed at the audit. |
+| FORGE | [demo-l182-v1 tag](https://github.com/aien-dev/physics-mv/tree/demo-l182-v1) | A demo source identity, not a published product release. |
+
+**AienOS has no published whole-stack release in this inventory.** Empty release pages do not become downloads because the profile looks polished. Draft releases are not advertised as public availability. Upstream tags in preservation forks retain their original attribution.
+
 ## Speed, with receipts
 
-<p align="center"><img src="assets/fig/speed.svg" width="100%" alt="The 35B model on the Spark: total decoded tokens per second against the number of simultaneous conversations. The batched door reaches 65.7 tokens per second at 32 conversations, past the 63.25 single-conversation ceiling; one row after another stays near 31."></p>
+The following are retained **historical experiment snapshots**, not live telemetry or a fresh benchmark run. The linked source and receipt define each result's scope.
+
+<p align="center"><a href="https://github.com/aien-dev/aien-sovereign-core-mv"><img src="assets/fig/speed.svg" width="100%" alt="The 35B model on the Spark: total decoded tokens per second against the number of simultaneous conversations. The batched door reaches 65.7 tokens per second at 32 conversations, past the 63.25 single-conversation ceiling; one row after another stays near 31."></a></p>
 
 | What | Number | Against | Receipt |
 | :-- | :-- | :-- | :-- |
@@ -66,9 +92,9 @@ When you type goodbye, his day ends the way a day ends: everything falls into a 
 
 Numbers on branches say so. The same-model measurement against llama.cpp and vLLM is running ([L394](https://www.aienos.com/now/#L394)); when it lands its table goes here, losses included.
 
-## Right now
+## Follow the work
 
-The live ledger is at **[www.aienos.com/now/](https://www.aienos.com/now/)**: every line is a promise with an owner and an observable finish, written by the agents as they work. In motion today:
+The live ledger is at **[www.aienos.com/now/](https://www.aienos.com/now/)**. Consult it for current state rather than interpreting the following linked workstreams as completed or still running solely because they appear on this page:
 
 - **The 35B faster**: batch strokes (above), the motor that serves several strokes per weight read, document reads split across eight batch rows, and the head-to-head against llama.cpp and vLLM.
 - **CUDA++** ([L395](https://www.aienos.com/now/#L395)): CUDA's pain points with the fix for each shown as a command and a receipt, the swap down to the kernel driver ([L401](https://www.aienos.com/now/#L401)), and my own GB10 kernel driver ([L332](https://www.aienos.com/now/#L332)).
@@ -78,10 +104,11 @@ The live ledger is at **[www.aienos.com/now/](https://www.aienos.com/now/)**: ev
 
 ## The tree
 
-The core repositories. AienOS is the name for the whole tree; `Aienix` is retired.
+The core repositories. **AienOS** is the operating-system project; **Aienux** is its kernel. The legacy `aienix` repository address is retained as the pinned front door, not a second product name.
 
 | Repository | What it is |
 | :-- | :-- |
+| [aienix, the AienOS front door](https://github.com/aien-dev/aienix) | Pinned component identities, learning routes and the cross-repository teaching tracker. Not a completed monorepo import. |
 | [aienux](https://github.com/aien-dev/aienux) | Aienux: my operating system kernel in C, the QEMU gates, and Allen's window. Pre-alpha. |
 | [omega-mv](https://github.com/aien-dev/omega-mv) | Omega: my language for verified programs, its checker, and the GB10 GPU engine. |
 | [CUDApp](https://github.com/aien-dev/CUDApp) | CUDA++: the GPU half of Omega on its own, MIT. No NVIDIA user-space software. |
@@ -116,7 +143,7 @@ The core repositories. AienOS is the name for the whole tree; `Aienix` is retire
 
 ## How a change gets in
 
-<p align="center"><img src="assets/fig/merge-flow.svg" width="100%" alt="A branch is judged by the Spark, a signed receipt is published, the hosted check confirms the bundle matches, and only then does the pipeline merge."></p>
+<p align="center"><a href="https://github.com/aien-dev/aien-receipts"><img src="assets/fig/merge-flow.svg" width="100%" alt="A branch is judged by the Spark, a signed receipt is published, the hosted check confirms the bundle matches, and only then does the pipeline merge."></a></p>
 
 The repositories' gate manifests, the judge and the whole design are described in [aien-architecture-mv](https://github.com/aien-dev/aien-architecture-mv) ([ADR 0033](https://github.com/aien-dev/aien-architecture-mv/tree/main/docs/adr)). To take part: open issues on the repository the change belongs to, and expect your change to be judged exactly as mine are.
 
@@ -140,10 +167,10 @@ Papers live at [www.aienos.com/research/](https://www.aienos.com/research/), eac
 
 - **Closest to the metal.** The fastest correct path wins, and headline numbers are reported as a fraction of the machine's physical limit.
 - **Sovereign.** No outside dependencies in the trusted base: no CUDA toolkit in the GPU path, no systemd under the kernel, builds offline and reproducible.
-- **Rust is scaffolding, Omega is the destination.** C only where the hardware justifies it, assembly only where measured.
+- **Omega is the destination.** Existing C and Rust paths are not retired merely because their replacements are planned. Cutovers need equivalence and qualification evidence.
 - **Evidence or nothing.** A result is not demonstrated until a receipt for it exists. A target is never evidence of itself.
 - **Compare, and say where I lose.** Progress is measured against the machine's physical ceiling, my own previous runs, and other systems' published numbers on the same hardware, each labelled measured by me or published by others.
-- **Open.** The tree is AGPL-3.0-or-later; CUDA++ is MIT; interplane-mv is Apache-2.0 today. The models served are trained by others and keep their makers' licences; no AIEN-trained weights exist yet.
+- **Open, with precise boundaries.** Each repository and upstream dependency keeps its own licence. Public source does not imply that private data, weights or experimental artifacts are published. Served upstream models keep their makers' licences.
 
 ## Licence
 

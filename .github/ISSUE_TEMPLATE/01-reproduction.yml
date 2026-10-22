@@ -1,0 +1,44 @@
+name: Reproduction or tutorial problem
+description: Report a printed command, prerequisite or expected result that does not match the actual checkout.
+title: "docs: reproduction problem in "
+body:
+  - type: markdown
+    attributes:
+      value: "Use the component's own tracker. Remove secrets and personal data; do not disclose private repositories here. Security reports belong in the security-policy route."
+  - type: input
+    id: source
+    attributes:
+      label: Repository and exact source revision
+      description: Include the tutorial URL and dependency pins if applicable.
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment and prerequisites
+      description: OS, architecture, tools, versions and any unavailable prerequisites. State host, simulation, QEMU or physical hardware.
+    validations:
+      required: true
+  - type: textarea
+    id: commands
+    attributes:
+      label: Smallest reproduction
+      description: Commands and synthetic input someone else can run safely.
+      render: shell
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected result
+      description: Quote the tutorial's expected output or exit status.
+    validations:
+      required: true
+  - type: textarea
+    id: observed
+    attributes:
+      label: Actual result and exit status
+      description: Include sanitized logs and links to retained evidence. A blocked step is not a successful reproduction.
+      render: text
+    validations:
+      required: true
