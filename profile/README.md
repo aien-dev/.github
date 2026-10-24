@@ -79,7 +79,6 @@ AienOS is the reserved home for the core tree; the code still lives in the compo
 | [aien-architecture-mv](https://github.com/aien-dev/aien-architecture-mv) | The authority for how AIEN fits together: decision records, milestone status, execution plan. |
 | [aien-protocols-mv](https://github.com/aien-dev/aien-protocols-mv) | Written contracts between the parts: byte formats, schemas, test vectors, including the Pi to Spark task protocol. |
 | [physics-mv](https://github.com/aien-dev/physics-mv) | FORGE machine realization layer in C and the boot artefacts for the GB10 path (QEMU qualified only so far). |
-| [aienix](https://github.com/aien-dev/aienix) | Reserved home for the one core tree. Planning stage. |
 
 ### Machines, boot and record
 
@@ -101,7 +100,7 @@ AienOS is the reserved home for the core tree; the code still lives in the compo
 | :-- | :-- |
 | [aien-translate](https://github.com/aien-dev/aien-translate) | Translation server for translate.js backed by the live 27B on our own runtime: no API key, text stays on the machine. In use. |
 | [synapse](https://github.com/aien-dev/synapse) | Agent-native changeset and coordination service with Git and Radicle interoperability. |
-| [interplane-mv](https://github.com/aien-dev/interplane-mv) | INTERPLANE: open protocol between models and agent runtimes. Models express intent; runtimes keep authority. Apache-2.0 today. |
+| [interplane-mv](https://github.com/aien-dev/interplane-mv) | INTERPLANE: open protocol between models and agent runtimes. Models express intent; runtimes keep authority. Apache-2.0. |
 | [aegis-runtime-mv](https://github.com/aien-dev/aegis-runtime-mv) | Agent runtime in Rust: local gateway, heartbeat scheduler, task workflow, SQLite. Pre-alpha. |
 | [spark-rsi-mv](https://github.com/aien-dev/spark-rsi-mv) | Recursive self-improvement engine in Rust: proposes small code changes, tests them in a sandbox, hands a review branch to a human. |
 | [open-humanity](https://github.com/aien-dev/open-humanity) | Opt-in, privacy-first peer assistance network for agents in distress. Early prototype; not yet judged by the Spark pipeline. |
@@ -156,10 +155,10 @@ To get involved: read the [architecture repository](https://github.com/aien-dev/
 - **Rust is scaffolding, Omega is the destination.** Rust carries the host runtime today; the long-term home for every component is Omega. C only where the hardware justifies it, assembly only where measured.
 - **Evidence or nothing.** A result is not demonstrated until a receipt for it exists. A target is never evidence of itself.
 - **Compare only with ourselves.** Progress is measured against the machine's physical ceiling and our own previous run, never against other people's systems.
-- **Open.** The project's own code is public under Apache-2.0. Forks keep their upstream licences. The model served today is Qwen3.8-27B under Qwen's own licence; no AIEN-trained weights exist yet.
+- **Open.** Compiler, language and runtime repositories (omega-mv, CUDApp, omega-bridge, aien-crypto, physics-mv) are public under Apache-2.0 WITH LLVM-exception; standalone protocols and benchmarks stay plain Apache-2.0. Forks keep their upstream licences. The model served today is Qwen3.8-27B under Qwen's own licence; no AIEN-trained weights exist yet.
 
 ## Licence
 
-Apache-2.0 for the tree ([LICENSE](LICENSE)), except where a repository's own LICENSE says otherwise; aien-protocols-mv specifications remain under the Community Specification License 1.0. See each repository's own LICENSE file.
+Apache-2.0 WITH LLVM-exception for the compiler/language/runtime tree ([LICENSE](LICENSE)), plain Apache-2.0 for interplane-mv and benchmarks-mv, except where a repository's own LICENSE says otherwise; aien-protocols-mv specifications remain under the Community Specification License 1.0. See each repository's own LICENSE file.
 
 <sub>AienOS is not a UNIX and makes no such claim. UNIX is a registered trademark of The Open Group. NVIDIA, DGX and Grace Blackwell are trademarks of NVIDIA Corporation. Raspberry Pi is a trademark of Raspberry Pi Ltd.</sub>
