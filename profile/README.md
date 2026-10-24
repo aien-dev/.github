@@ -156,10 +156,10 @@ To get involved: read the [architecture repository](https://github.com/aien-dev/
 - **Rust is scaffolding, Omega is the destination.** Rust carries the host runtime today; the long-term home for every component is Omega. C only where the hardware justifies it, assembly only where measured.
 - **Evidence or nothing.** A result is not demonstrated until a receipt for it exists. A target is never evidence of itself.
 - **Compare only with ourselves.** Progress is measured against the machine's physical ceiling and our own previous run, never against other people's systems.
-- **Open.** The project's own code is public under AGPL-3.0-or-later. The one exception today is interplane-mv, which is Apache-2.0 with an AGPL branch pushed and not yet merged. Forks keep their upstream licences. The model served today is Qwen3.8-27B under Qwen's own licence; no AIEN-trained weights exist yet.
+- **Open.** The project's own code is public under Apache-2.0. Forks keep their upstream licences. The model served today is Qwen3.8-27B under Qwen's own licence; no AIEN-trained weights exist yet.
 
 ## Licence
 
-AGPL-3.0-or-later for the tree ([LICENSE](https://github.com/aien-dev/aienix/blob/main/LICENSE)), except interplane-mv, which is Apache-2.0 today. See each repository's own LICENSE file.
+Apache-2.0 for the tree ([LICENSE](LICENSE)), except where a repository's own LICENSE says otherwise; aien-protocols-mv specifications remain under the Community Specification License 1.0. See each repository's own LICENSE file.
 
 <sub>AienOS is not a UNIX and makes no such claim. UNIX is a registered trademark of The Open Group. NVIDIA, DGX and Grace Blackwell are trademarks of NVIDIA Corporation. Raspberry Pi is a trademark of Raspberry Pi Ltd.</sub>
