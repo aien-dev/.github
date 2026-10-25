@@ -7,7 +7,7 @@ Shared rules: read https://www.aienos.com/agents/RULES.md first. This file adds 
 ## Scope
 
 - Applies to the whole repository.
-- A change here reaches every `aien-dev` repository that lacks its own file of the same name. Each of these files says that a repository's own copy takes precedence; keep that sentence.
+- A change here reaches every `aien-dev` repository that lacks its own file of the same name. `CONTRIBUTING.md`, `SECURITY.md` and `.github/PULL_REQUEST_TEMPLATE.md` say that a repository's own copy takes precedence; keep that sentence where it exists.
 - What each file is:
   - `profile/README.md`: the organization front page. Its images live in `profile/` and `profile/assets/` and are referenced by relative path.
   - `CONTRIBUTING.md`: pull request rules, inbound licensing and the Contributor License Agreement.
