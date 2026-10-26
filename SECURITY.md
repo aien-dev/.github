@@ -13,7 +13,7 @@ Please include the repository, the commit or version, the steps to reproduce, an
 
 ## Status of the code
 
-The AIEN repositories are research-grade, pre-alpha software. No public release exists yet, so there are no supported versions; reports are handled against `main`.
+AienOS is in alpha testing. The alpha bundle (Core engine, Omega install wizard, CUDA++ user-space replacement) is distributed through GitHub Releases on [aienos-releases](https://github.com/aien-dev/aienos-releases); only the latest alpha release and `main` are supported. The other AIEN repositories are research-grade, pre-alpha software with no public release; reports for them are handled against `main`.
 
 ## Where a report belongs
 
