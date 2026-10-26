@@ -154,6 +154,6 @@ To get involved: read the [architecture repository](https://github.com/aien-dev/
 
 ## Licence
 
-Apache-2.0 WITH LLVM-exception for the compiler/language/runtime tree ([LICENSE](LICENSE)), plain Apache-2.0 for interplane-mv and benchmarks-mv, and AGPL for the repositories relicensed on 2026-10-04 (among them aien-architecture-mv, aegis-runtime-mv, allen, spark-rsi-mv and aien-rig), except where a repository's own LICENSE says otherwise; aien-protocols-mv specifications remain under the Community Specification License 1.0. See each repository's own LICENSE file.
+Apache-2.0 WITH LLVM-exception for the compiler/language/runtime tree, plain Apache-2.0 for interplane-mv and benchmarks-mv, and AGPL for the repositories relicensed on 2026-10-04 (among them aien-architecture-mv, aegis-runtime-mv, allen, spark-rsi-mv and aien-rig), except where a repository's own LICENSE says otherwise; aien-protocols-mv specifications remain under the Community Specification License 1.0. See each repository's own LICENSE file.
 
 <sub>AienOS is not a UNIX and makes no such claim. UNIX is a registered trademark of The Open Group. NVIDIA, DGX and Grace Blackwell are trademarks of NVIDIA Corporation. Raspberry Pi is a trademark of Raspberry Pi Ltd.</sub>
