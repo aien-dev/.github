@@ -20,9 +20,10 @@ This file applies to every `aien-dev` repository that does not carry its own
    output in the description.
 3. Add tests that fail without the change and pass with it. Include a negative
    control where the repository's conventions ask for one.
-4. Sign off every commit (`git commit -s`, Developer Certificate of Origin
-   1.1). The sign-off certifies you wrote the contribution or have the right
-   to submit it.
+4. A `Signed-off-by` line (Developer Certificate of Origin) is not required;
+   the maintainer declined a DCO requirement. Submitting a pull request is
+   your statement that you wrote the contribution or have the right to
+   submit it (see the Contributor License Agreement below).
 5. Do not include third-party code, binaries or model weights unless you state
    their origin and licence in the pull request and they are compatible with
    this policy.

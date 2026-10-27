@@ -52,7 +52,7 @@ There is no local renderer. To check how a Markdown change renders, push the bra
 - When a repository is renamed, archived or added, update its name and link in `profile/README.md` in the same change.
 - After editing any aien-dev repository's purpose, status or links, or adding a repository, update aien-dev/sovereign-intelligence `index/curated.yml` (layer, evidence, one-line purpose) in the same piece of work. Its hourly index-sync fails and names any public repository without an entry. Never name a private repository there.
 - Plain direct English. No em dashes or en dashes.
-- One purpose per pull request, with the commands you ran and their output in the description, as `CONTRIBUTING.md` requires. Sign off commits with `git commit -s`.
+- One purpose per pull request, with the commands you ran and their output in the description, as `CONTRIBUTING.md` requires. DCO sign-off is not required (declined by Drake, 2026-10-27); never add a `Signed-off-by` line in Drake's name.
 
 ## Safety and approvals
 
