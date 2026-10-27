@@ -111,7 +111,6 @@ AienOS is the reserved home for the core tree; the code still lives in the compo
 | :-- | :-- |
 | [aienos.com](https://github.com/aien-dev/aienos.com) | Source of [www.aienos.com](https://www.aienos.com) (Rust generator, GitHub Pages). |
 | [interplane.io](https://github.com/aien-dev/interplane.io) | Source of interplane.io, rebuilt hourly from the Spark. |
-| [translate](https://github.com/aien-dev/translate) | Fork of translate.js kept for aien-translate (MIT). |
 | [t3code](https://github.com/aien-dev/t3code) | Fork of t3code holding one pending contribution (MIT). |
 
 Archived repositories are not listed. Each directory in the core repositories carries a `.crumb` file describing its purpose; a change that leaves the crumbs stale fails its gate.
