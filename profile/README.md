@@ -25,6 +25,12 @@
 
 Aien is a computing stack built to run on machines you own, with nothing in the trusted base that depends on an outside service: its own operating system kernel (Aienux), its own language and GPU engine (Omega), a host runtime and model server in Rust, and a verification pipeline that retains evidence for qualified runs. AienOS is now in alpha testing (since 2026-10-26): testers install the alpha bundle (the Core engine, the Omega install wizard and the CUDA++ user-space replacement), whose GPU path is qualified only on the DGX Spark GB10; components outside that bundle keep their own pre-alpha labels. It started on one NVIDIA DGX Spark and now runs across several machines: the Spark serves a 27B model on our own GPU engine, an Intel iMac from 2017 boots the Aienux kernel on bare metal, a Raspberry Pi 5 has run the same kernel on real hardware and hosts the project's house server, QEMU carries the emulator gates, and a Windows PC with an RTX 5070 is the target for AIEN Rig. The project is led by one engineer, Drake Stapleton, working with AI agents as day-to-day collaborators: the agents write, test and review; the engineer decides. AienOS is the name for the core tree these parts are being brought into. Every claim on this page links to the commit, pull request or evidence folder it comes from.
 
+## Human-Directed Agentic Engineering
+
+Development follows **Human-Directed Agentic Engineering (HDAE)**. I define the goals, architecture, constraints, acceptance criteria and stopping points. My agents implement, run checks, diagnose failures and revise within those boundaries. I retain responsibility for the claims, acceptance and release decisions.
+
+For the documented method and a systems-software case study, see Gregory M. Kurtzer, *Ginux: Building an Independent Kernel That Runs Linux Userspace through Human-Directed Agentic Engineering* (2026), [doi:10.5281/zenodo.23682548](https://doi.org/10.5281/zenodo.23682548). This credits the method description and case study, not authorship or endorsement of AienOS.
+
 ## The machines
 
 | Machine | Role | What runs on it today | Last evidence | Link |
@@ -153,6 +159,6 @@ To get involved: read the [architecture repository](https://github.com/aien-dev/
 
 ## Licence
 
-Apache-2.0 WITH LLVM-exception for the compiler/language/runtime tree ([LICENSE](LICENSE)), plain Apache-2.0 for interplane-mv and benchmarks-mv, and AGPL for the repositories relicensed on 2026-10-04 (among them aien-architecture-mv, aegis-runtime-mv, allen, spark-rsi-mv and aien-rig), except where a repository's own LICENSE says otherwise; aien-protocols-mv specifications remain under the Community Specification License 1.0. See each repository's own LICENSE file.
+Apache-2.0 WITH LLVM-exception for the compiler/language/runtime tree ([LICENSE](https://github.com/aien-dev/omega-mv/blob/main/LICENSE)), plain Apache-2.0 for interplane-mv and benchmarks-mv, and AGPL for the repositories relicensed on 2026-10-04 (among them aien-architecture-mv, aegis-runtime-mv, allen, spark-rsi-mv and aien-rig), except where a repository's own LICENSE says otherwise; aien-protocols-mv specifications remain under the Community Specification License 1.0. See each repository's own LICENSE file.
 
 <sub>AienOS is not a UNIX and makes no such claim. UNIX is a registered trademark of The Open Group. NVIDIA, DGX and Grace Blackwell are trademarks of NVIDIA Corporation. Raspberry Pi is a trademark of Raspberry Pi Ltd.</sub>
