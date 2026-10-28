@@ -21,7 +21,7 @@
 
 ---
 
-## What AIEN is
+## What Aien is
 
 AIEN is a computing stack built to run on machines you own, with nothing in the trusted base that depends on an outside service: its own operating system kernel (Aienux), its own language and GPU engine (Omega), a host runtime and model server in Rust, and a verification pipeline that retains evidence for qualified runs. AienOS is now in alpha testing (since 2026-10-26): testers install the alpha bundle (the Core engine, the Omega install wizard and the CUDA++ user-space replacement), whose GPU path is qualified only on the DGX Spark GB10; components outside that bundle keep their own pre-alpha labels. It started on one NVIDIA DGX Spark and now runs across several machines: the Spark serves a 27B model on our own GPU engine, an Intel iMac from 2017 boots the Aienux kernel on bare metal, a Raspberry Pi 5 has run the same kernel on real hardware and hosts the project's house server, QEMU carries the emulator gates, and a Windows PC with an RTX 5070 is the target for AIEN Rig. The project is led by one engineer, Drake Stapleton, working with AI agents as day-to-day collaborators: the agents write, test and review; the engineer decides. AienOS is the name for the core tree these parts are being brought into. Every claim on this page links to the commit, pull request or evidence folder it comes from.
 
