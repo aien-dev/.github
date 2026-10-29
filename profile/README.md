@@ -29,6 +29,8 @@ Aien is a computing stack built to run on machines you own, with nothing in the 
 
 Development follows **Human-Directed Agentic Engineering (HDAE)**. I define the goals, architecture, constraints, acceptance criteria and stopping points. My agents implement, run checks, diagnose failures and revise within those boundaries. I retain responsibility for the claims, acceptance and release decisions.
 
+I trained as a chemist. My M.S. research at Western Kentucky University was semiconductor nanocrystals: CdSe@CdS nanorods with platinum deposited on their tips ([Beilstein J. Nanotechnol. 2019](https://doi.org/10.3762/bjnano.10.71), published as Michael D. Ballentine). The habit it taught me, trusting the measurement over the story, is the rule this tree runs on. More at [aienos.com/engineer](https://www.aienos.com/engineer/).
+
 For the documented method and a systems-software case study, see Gregory M. Kurtzer, *Ginux: Building an Independent Kernel That Runs Linux Userspace through Human-Directed Agentic Engineering* (2026), [doi:10.5281/zenodo.23682548](https://doi.org/10.5281/zenodo.23682548). This credits the method description and case study, not authorship or endorsement of AienOS.
 
 ## The machines
