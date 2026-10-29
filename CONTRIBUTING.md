@@ -13,6 +13,12 @@ This file applies to every `aien-dev` repository that does not carry its own
   `VERSIONING.md` there. Specifications are licensed under the Community
   Specification License 1.0, not the Apache License 2.0.
 
+## Human-Directed Agentic Engineering
+
+Development follows Human-Directed Agentic Engineering (HDAE): humans define goals, architecture, constraints, acceptance criteria and stopping points; agents implement, execute checks, diagnose failures and revise within those boundaries. Human review retains responsibility for claims, acceptance and release decisions. This describes the development method, not permission for an agent to merge, publish or operate hardware.
+
+For the documented method and systems-software case study, see Gregory M. Kurtzer, *Ginux: Building an Independent Kernel That Runs Linux Userspace through Human-Directed Agentic Engineering* (2026), [doi:10.5281/zenodo.23682548](https://doi.org/10.5281/zenodo.23682548).
+
 ## Pull requests
 
 1. Work on a branch named for what it does.
