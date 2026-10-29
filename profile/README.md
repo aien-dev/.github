@@ -31,6 +31,8 @@ Development follows **Human-Directed Agentic Engineering (HDAE)**. I define the 
 
 I trained as a chemist. My M.S. research at Western Kentucky University was semiconductor nanocrystals: CdSe@CdS nanorods with platinum deposited on their tips ([Beilstein J. Nanotechnol. 2019](https://doi.org/10.3762/bjnano.10.71), published as Michael D. Ballentine). Then I spent years in industrial chemistry and manufacturing engineering, where Six Sigma and continuous improvement (DMAIC, kaizen, standard work, root-cause analysis) became how I work. I guide my hive of agents the way I guide a plant: map the flow, set standard work, measure, fix the root cause, run it again. Without that engineering path I could not have built this stack the way I did. More at [aienos.com/engineer](https://www.aienos.com/engineer/).
 
+I run a hive, not a swarm. A swarm is agents deciding for themselves what they do. In my hive every agent has an assignment, I keep control of every one of them, and the work is a controlled build. Why: [a hive, not a swarm](https://www.aienos.com/engineer/hive/).
+
 For the documented method and a systems-software case study, see Gregory M. Kurtzer, *Ginux: Building an Independent Kernel That Runs Linux Userspace through Human-Directed Agentic Engineering* (2026), [doi:10.5281/zenodo.23682548](https://doi.org/10.5281/zenodo.23682548). This credits the method description and case study, not authorship or endorsement of AienOS.
 
 ## The machines
