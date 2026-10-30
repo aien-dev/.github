@@ -2,7 +2,7 @@
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/aienos-wordmark-dark.svg">
-  <img src="assets/aienos-wordmark-light.svg" width="560" alt="AienOS, the operating-system layer of Sovereign Intelligence">
+  <img src="assets/aienos-wordmark-light.svg" width="560" alt="AienOS">
 </picture>
 
 **Persistent machine intelligence on hardware you own**
@@ -23,7 +23,7 @@
 
 ## What Aien is
 
-Aien is a computing stack built to run on machines you own, with nothing in the trusted base that depends on an outside service: its own operating system kernel (Aienux), its own language and GPU engine (Omega), a host runtime and model server in Rust, and a verification pipeline that retains evidence for qualified runs. AienOS is now in alpha testing (since 2026-10-26): testers install the alpha bundle (the Core engine, the Omega install wizard and the CUDA++ user-space replacement), whose GPU path is qualified only on the DGX Spark GB10; components outside that bundle keep their own pre-alpha labels. It started on one NVIDIA DGX Spark and now runs across several machines: the Spark serves a 27B model on our own GPU engine, an Intel iMac from 2017 boots the Aienux kernel on bare metal, a Raspberry Pi 5 has run the same kernel on real hardware and hosts the project's house server, QEMU carries the emulator gates, and a Windows PC with an RTX 5070 is the target for AIEN Rig. The project is led by one engineer, Drake Stapleton, working with AI agents as day-to-day collaborators: the agents write, test and review; the engineer decides. As of 2026-10-30 ([ADR 0045](https://github.com/aien-dev/aien-architecture-mv/blob/main/docs/adr/0045-aienix-retired-sovereign-intelligence-center.md)), the whole system is Sovereign Intelligence (SI), and the alpha testing described here is the Sovereign Intelligence alpha. AienOS is only the operating-system layer. The repository center is under [The tree](#the-tree). Every claim on this page links to the commit, pull request or evidence folder it comes from.
+Aien is a computing stack built to run on machines you own, with nothing in the trusted base that depends on an outside service: its own operating system kernel (Aienux), its own language and GPU engine (Omega), a host runtime and model server in Rust, and a verification pipeline that retains evidence for qualified runs. AienOS is now in alpha testing (since 2026-10-26): testers install the alpha bundle (the Core engine, the Omega install wizard and the CUDA++ user-space replacement), whose GPU path is qualified only on the DGX Spark GB10; components outside that bundle keep their own pre-alpha labels. It started on one NVIDIA DGX Spark and now runs across several machines: the Spark serves a 27B model on our own GPU engine, an Intel iMac from 2017 boots the Aienux kernel on bare metal, a Raspberry Pi 5 has run the same kernel on real hardware and hosts the project's house server, QEMU carries the emulator gates, and a Windows PC with an RTX 5070 is the target for AIEN Rig. The project is led by one engineer, Drake Stapleton, working with AI agents as day-to-day collaborators: the agents write, test and review; the engineer decides. As of 2026-10-30 ([ADR 0045](https://github.com/aien-dev/aien-architecture-mv/blob/f13c623/docs/adr/0045-aienix-retired-sovereign-intelligence-center.md)), the whole system is called Sovereign Intelligence (SI), and AienOS names only the operating-system layer. The repository center is under [The tree](#the-tree). Every claim on this page links to the commit, pull request or evidence folder it comes from.
 
 ## Human-Directed Agentic Engineering
 
@@ -73,7 +73,7 @@ The live ledger is at **[www.aienos.com/now/](https://www.aienos.com/now/)**. It
 
 ## The tree
 
-The whole system is Sovereign Intelligence (SI) ([ADR 0045](https://github.com/aien-dev/aien-architecture-mv/blob/main/docs/adr/0045-aienix-retired-sovereign-intelligence-center.md)). AienOS is only the operating-system layer. [aien-dev/sovereign-intelligence](https://github.com/aien-dev/sovereign-intelligence) is the integration, release and install center, and where the signed Spark test runs. [aien-dev/aienix](https://github.com/aien-dev/aienix) is retired. The repositories below keep their own parts. Repository names end in `-mv` today; the older names reach them only through GitHub's redirect.
+The whole system is Sovereign Intelligence (SI) ([ADR 0045](https://github.com/aien-dev/aien-architecture-mv/blob/f13c623/docs/adr/0045-aienix-retired-sovereign-intelligence-center.md)). AienOS is only the operating-system layer. [aien-dev/sovereign-intelligence](https://github.com/aien-dev/sovereign-intelligence) is the integration, release and install center, and where the signed Spark test runs. [aien-dev/aienix](https://github.com/aien-dev/aienix) is retired. The repositories below keep their own parts. Repository names end in `-mv` today; the older names reach them only through GitHub's redirect.
 
 ### Core
 
