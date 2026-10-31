@@ -1,5 +1,7 @@
 # Covenant of Open Building
 
+Statement of values. It binds no agent; RULES.md and the repository's AGENTS.md do.
+
 This document states values. It grants no legal rights and restricts none.
 The software license is the Apache License, Version 2.0, Apache-2.0 (see LICENSE). Where this covenant and
 LICENSE disagree, LICENSE governs.

@@ -1,4 +1,7 @@
 # Autonomous Agent System Specification and Runtime Governance Standard
+
+Statement of values. It binds no agent; RULES.md and the repository's AGENTS.md do.
+
 Version 1.1 (October 2026)
 Governing Autonomous AI Agents, Multi-Agent Swarms, and Synthetic Execution
 

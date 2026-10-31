@@ -81,6 +81,8 @@ request; open an issue instead and the Maintainer will discuss an alternative.
 ## Code of conduct
 
 People follow `CODE_OF_CONDUCT.md` (Contributor Covenant 3.0). Autonomous
-agents also follow `AGENT_CODE_OF_CONDUCT.md`. How decisions are made, and the
-rule that donors do not direct the work, are in `GOVERNANCE.md`. A repository's
-own file takes precedence.
+agents follow https://www.aienos.com/agents/RULES.md and the repository's own
+`AGENTS.md` (or `CLAUDE.md`); those are the only binding agent rules.
+`AGENT_CODE_OF_CONDUCT.md` is a statement of values. How decisions are made, and
+the rule that donors do not direct the work, are in `GOVERNANCE.md`. A
+repository's own file takes precedence.

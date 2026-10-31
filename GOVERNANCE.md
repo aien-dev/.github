@@ -1,5 +1,7 @@
 # Governance
 
+Statement of values. It binds no agent; RULES.md and the repository's AGENTS.md do.
+
 This file applies to every `aien-dev` repository that does not carry its own
 `GOVERNANCE.md`. A repository's own file takes precedence; `aien-protocols-mv`
 has one for its specifications.

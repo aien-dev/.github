@@ -123,7 +123,7 @@ The whole system is Sovereign Intelligence (SI) ([ADR 0045](https://github.com/a
 | [interplane.io](https://github.com/aien-dev/interplane.io) | Source of interplane.io, rebuilt hourly from the Spark. |
 | [t3code](https://github.com/aien-dev/t3code) | Fork of t3code holding one pending contribution (MIT). |
 
-Archived repositories are not listed. Each directory in the core repositories carries a `.crumb` file describing its purpose; a change that leaves the crumbs stale fails its gate.
+Archived repositories are not listed. Some directories carry a `.crumb` file describing their purpose. On aien-sovereign-core-mv `main` at `43495111` (2026-10-31) there are 17 tracked `.crumb` files across 779 tracked directories, and none under `crates/aien-serve-http`. The crumb check in **AIEN Checks** is advisory: a stale crumb does not block a merge.
 
 ## Research
 
@@ -150,7 +150,7 @@ Since the 2026-10-24 policy change, GitHub-hosted **AIEN Checks** on pull reques
 
 The default branch of [aien-rig](https://github.com/aien-dev/aien-rig) has no build or workflow yet. Its [2026-10-19 Windows CI run](https://github.com/aien-dev/aien-rig/actions/runs/39293286436) was on `tuner/v0`, not `main`, and does not qualify an RTX 5070. [open-humanity](https://github.com/aien-dev/open-humanity) is not covered by a blanket Spark-judge claim.
 
-To get involved: read the [architecture repository](https://github.com/aien-dev/aien-architecture-mv) first (its `PLAN_AUTHORITY.md` says which document wins when two disagree), and open issues on the component repository the change belongs to.
+To get involved: read [RULES.md](https://www.aienos.com/agents/RULES.md) and the repository's own `AGENTS.md` (or `CLAUDE.md`); those are the only binding agent rules. The [architecture repository](https://github.com/aien-dev/aien-architecture-mv) (`PLAN_AUTHORITY.md`) is the authority for status and sequencing. Open issues on the component repository the change belongs to.
 
 ## Principles
 

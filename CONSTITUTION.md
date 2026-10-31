@@ -1,5 +1,7 @@
 # The Sovereign AI Constitution
 
+Statement of values. It binds no agent; RULES.md and the repository's AGENTS.md do.
+
 > **Governance Notice:** This Constitution serves exclusively as the internal architectural charter, technical doctrine, and engineering standard for the upstream AIEN Sovereign AI Ecosystem. It does not modify, condition, restrict, or supplement the license granted to users of AIEN software, the Apache License, Version 2.0 (Apache-2.0, see LICENSE). Adopting, enforcing, or retaining this internal charter is not a condition of that license.
 
 ## Preamble
