@@ -12,11 +12,11 @@ Shared rules: read https://www.aienos.com/agents/RULES.md first. This file adds 
   - `profile/README.md`: the organization front page. Its images live in `profile/` and `profile/assets/` and are referenced by relative path.
   - `CONTRIBUTING.md`: pull request rules, inbound licensing and the Contributor License Agreement.
   - `SECURITY.md`: private vulnerability reporting.
-  - `AGENT_CODE_OF_CONDUCT.md`: the governance standard for autonomous agents.
+  - `AGENT_CODE_OF_CONDUCT.md`: a statement of values for autonomous agents. It binds no agent; RULES.md and each repository's `AGENTS.md` do.
   - `CODE_OF_CONDUCT.md`: the Contributor Covenant 3.0 for people, with the reporting address filled in.
   - `GOVERNANCE.md`: the project charter, Technical Steering Committee rules, donor policy, vendor-neutral backend policy and release signing. Two thresholds are marked TBD for the maintainer.
   - `.github/PULL_REQUEST_TEMPLATE.md` and `.github/ISSUE_TEMPLATE/implementation-initiative.md`: the fallback templates.
-  - `CONSTITUTION.md` and `COVENANT.md`: statements of values. `COVENANT.md` says it grants and restricts no legal rights.
+  - `CONSTITUTION.md`, `COVENANT.md` and `GOVERNANCE.md`: statements of values; each opens with a line saying it binds no agent. `COVENANT.md` says it grants and restricts no legal rights.
   - `LICENSE` (Apache License 2.0) and `NOTICE` (copyright and trademark notice).
 
 ## Installation
@@ -64,6 +64,6 @@ There is no local renderer. To check how a Markdown change renders, push the bra
 
 - `CONTRIBUTING.md`: how changes are accepted, licensing, the Contributor License Agreement.
 - `SECURITY.md`: how to report a vulnerability.
-- `AGENT_CODE_OF_CONDUCT.md`: rules for autonomous agents across `aien-dev`.
+- `AGENT_CODE_OF_CONDUCT.md`: the values behind the agent rules. The binding rules are https://www.aienos.com/agents/RULES.md and each repository's `AGENTS.md`.
 - `CODE_OF_CONDUCT.md` and `GOVERNANCE.md`: conduct for people, and how the project is governed.
 - `profile/README.md`: what AIEN is, the machines, and how a change gets into the core repositories.
