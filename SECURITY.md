@@ -9,7 +9,7 @@ Report privately. Do not open a public issue, pull request or discussion about i
 1. GitHub: open the repository's Security tab and choose "Report a vulnerability". This
    creates a private advisory that only the maintainers can see. If that option is not shown,
    private vulnerability reporting has not been enabled for that repository yet; use email.
-2. Email: drake@aienos.com or aien@aienos.com, with the subject `[<repository>] security report`.
+2. Email: aien@aienos.com, with the subject `[<repository>] security report`.
 
 Include the repository, the commit or version you tested, the component (path), the steps to
 reproduce, and what an attacker could do with it. If the report involves a secret, describe where
@@ -30,14 +30,15 @@ This project has one maintainer; the targets below are best effort and stated ho
 ## Scope
 
 - This repository itself holds the organization profile and default community files
-  (`profile/`, `CONTRIBUTING.md`, this file, `AGENT_CODE_OF_CONDUCT.md`, the pull request and
-  issue templates). A vulnerability here is a secret, private address or personal data committed to
+  (`profile/`, `CONTRIBUTING.md`, this file, `CODE_OF_CONDUCT.md`, `GOVERNANCE.md`,
+  `AGENT_CODE_OF_CONDUCT.md`, the pull request and issue templates). A vulnerability here is a
+  secret, private address or personal data committed to
   a public file, or a template change that would lead contributors in every repository to disclose
   something they should not.
 - For any other aien-dev repository without its own policy, the scope is that repository's code
   and workflows.
 - A flaw in INTERPLANE, the interoperability protocol, belongs to
-  [interplane](https://github.com/aien-dev/interplane/blob/main/SECURITY.md).
+  [interplane](https://github.com/aien-dev/interplane-mv/blob/main/SECURITY.md).
 - If you are unsure which repository is affected, report it on the one you found it in, or by
   email.
 
